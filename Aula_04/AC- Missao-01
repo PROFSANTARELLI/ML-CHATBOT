@@ -115,15 +115,6 @@ tempos_entrega = np.array([30, 15, 55, 40, 10])
 print("Complete o código acima para prever o tempo de entrega!")
 
 
-# --- SOLUÇÃO COMENTADA DO EXERCÍCIO ---
-# modelo_entrega = LinearRegression()
-# modelo_entrega.fit(dados_entregas, tempos_entrega)
-# pedido_novo = np.array([[8, 2]])
-# tempo_previsto = modelo_entrega.predict(pedido_novo)
-# print(f"SOLUÇÃO: Tempo de entrega previsto para o novo pedido: {tempo_previsto[0]:.2f} minutos")
-# ------------------------------------------------------------------------------
-
-
 
 # ------------------------------------------------------------------------------
 #TAREFAS DE APRENDIZADO NÃO SUPERVISIONADO - Coloque todas as evidências no seu GITHUB e valide as execuções com o professor#
@@ -220,4 +211,5 @@ print("Complete o código para encontrar os produtos âncora!")
 # print(f"SOLUÇÃO: Características dos Produtos Âncora (Preço, Popularidade):\n{produtos_ancora}")
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-#### NÃO ESQUEÇA:  TODAS AS EVIDÊNCIA PRECISAM ESTAR NO GITHUB DE VOCÊS - Coloque o nome completo apenas dos integrantes presentes ###
+
+#### NÃO ESQUEÇAM:  TODAS AS EVIDÊNCIA PRECISAM ESTAR NO GITHUB DE VOCÊS - Coloque o nome completo apenas dos integrantes presentes ###
