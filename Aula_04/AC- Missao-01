@@ -1,7 +1,9 @@
 #TAREFAS DE APRENDIZADO SUPERVISIONADO - Coloque todas as evidências no seu GITHUB e valide as execuções com o professor - Coloque o nome completo apenas dos integrantes presentes#
 
 # ------------------------------------------------------------------------------
-#### TAREFA 1 :  Treine o modelo abaixo colocando mais 4 conjuntos de dados e rode sem erros no VSCODE - Faça teste após o treinamento ###
+#### TAREFA 1 :  Treine o modelo abaixo colocando mais 4 conjuntos de dados e rode sem erros no VSCODE ou no Colab - Faça teste após o treinamento ###
+
+#Para começar, instale o scikit-learn = pip install scikit-learn
 
 import re
 from sklearn.feature_extraction.text import CountVectorizer
@@ -49,7 +51,7 @@ while True:
 
 
 
-#### TAREFA 2 :  Criar um classificador de mensagens para um bot de atendimento acadêmico - rode sem erros no VSCODE ###
+#### TAREFA 2 :  Criar um classificador de mensagens para um bot de atendimento acadêmico - rode sem erros no VSCODE  ou no Colab ###
 
 # Criar um classificador de mensagens para um bot de atendimento acadêmico.
 # Instruções:
@@ -81,7 +83,7 @@ rotulos = [
 # ...
 
 
-#### TAREFA 3 :  Criar um classificador de Previsão de Tempo de Entrega de Pizza - rode sem erros no VSCODE ###
+#### TAREFA 3 :  Criar um classificador de Previsão de Tempo de Entrega de Pizza - rode sem erros no VSCODE  ou no Colab###
 # ------------------------------------------------------------------------------
 #criar um modelo que prevê o tempo de entrega (em minutos) com base na distância (em km) e no número de pizzas no pedido.
 # ------------------------------------------------------------------------------
@@ -120,7 +122,7 @@ print("Complete o código acima para prever o tempo de entrega!")
 #TAREFAS DE APRENDIZADO NÃO SUPERVISIONADO - Coloque todas as evidências no seu GITHUB e valide as execuções com o professor#
 # ------------------------------------------------------------------------------
 
-# TAREFA 4 :Treine o modelo abaixo colocando mais 3 conjuntos de dados e parametrize para 3 clusters e rode sem erros no VSCODE - Faça teste após o treinamento 
+# TAREFA 4 :Treine o modelo abaixo colocando mais 3 conjuntos de dados e parametrize para 3 clusters e rode sem erros no VSCODE ou no Colab - Faça teste após o treinamento 
 # aprendizado não supervisionado para agrupar mensagens semelhantes sem informar ao modelo quais são suas categorias.
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.cluster import KMeans
@@ -180,7 +182,7 @@ frases = [
 # 4. Saída
 # ...
 
-# TAREFA 6 : # Encontrar Produtos "Âncora" - rode sem erros no VSCODE
+# TAREFA 6 : # Encontrar Produtos "Âncora" - rode sem erros no VSCODE ou no Colab
 # Sua Missão: identificar os 2 produtos que melhor representam suas categorias principais, para colocá-los em destaque na home page. Estes são os produtos "âncora".
 # Dica: Os produtos âncora são os centros dos clusters!
 # ------------------------------------------------------------------------------
