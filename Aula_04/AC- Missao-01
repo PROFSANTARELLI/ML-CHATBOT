@@ -122,7 +122,7 @@ print("Complete o código acima para prever o tempo de entrega!")
 #TAREFAS DE APRENDIZADO NÃO SUPERVISIONADO - Coloque todas as evidências no seu GITHUB e valide as execuções com o professor#
 # ------------------------------------------------------------------------------
 
-# TAREFA 4 :Treine o modelo abaixo colocando mais 3 conjuntos de dados e parametrize para 3 clusters e rode sem erros no VSCODE ou no Colab - Faça teste após o treinamento 
+# TAREFA 4 :Treine o modelo abaixo colocando mais 3 TEXTOS DE APRENDIZADO e parametrize para 3 clusters e rode sem erros no VSCODE ou no Colab - Faça teste após o treinamento 
 # aprendizado não supervisionado para agrupar mensagens semelhantes sem informar ao modelo quais são suas categorias.
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.cluster import KMeans
@@ -206,11 +206,6 @@ dados_produtos = np.array([
 # print(f"Características dos Produtos Âncora (Preço, Popularidade):\n{produtos_ancora}")
 print("Complete o código para encontrar os produtos âncora!")
 
-# --- SOLUÇÃO COMENTADA DO EXERCÍCIO 2.2 ---
-# modelo_produtos = KMeans(n_clusters=2, random_state=42, n_init=10)
-# modelo_produtos.fit(dados_produtos)
-# produtos_ancora = modelo_produtos.cluster_centers_
-# print(f"SOLUÇÃO: Características dos Produtos Âncora (Preço, Popularidade):\n{produtos_ancora}")
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
