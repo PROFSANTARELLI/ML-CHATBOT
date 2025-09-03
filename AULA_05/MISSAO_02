@@ -160,7 +160,7 @@ Regras de Recompensa:
 Sua Missão: Você vai preencher a lógica do ambiente. O agente sempre tentará se mover para a 'direita'. Você precisa atualizar a posição dele, verificar se ele alcançou a comida e calcular a recompensa a cada passo.
 
 # ==============================================================================
-# EXERCÍCIO 5 - APRENDIZADO POR REFORÇO: O AGENTE COMILÃO
+# EXERCÍCIO 5 - APRENDIZADO POR REFORÇO: O PERSONAGEM COMILÃO
 # Objetivo: Entender o loop básico de interação do RL (Ação -> Recompensa).
 # ==============================================================================
 
@@ -173,7 +173,7 @@ recompensa_total = 0
 # O agente começa na posição inicial.
 posicao_agente = POSICAO_INICIAL
 
-print("--- Iniciando a Simulação do Agente Guloso ---")
+print("--- Iniciando a Simulação do PERSONAGEM COMILÃOo ---")
 print(f"O agente começa na posição {posicao_agente} e quer chegar na comida na posição {POSICAO_COMIDA}.")
 print("-" * 30)
 
@@ -227,7 +227,7 @@ recompensa_total = 0
 # O agente começa na posição inicial.
 posicao_agente = POSICAO_INICIAL
 
-print("--- Iniciando a Simulação do Agente Guloso ---")
+print("--- Iniciando a Simulação do PERSONAGEM COMILÃO ---")
 print(f"O agente começa na posição {posicao_agente} e quer chegar na comida na posição {POSICAO_COMIDA}.")
 print("-" * 30)
 
@@ -256,13 +256,13 @@ for passo in range(10):
 #    Acumulamos a recompensa do passo na variável total.
     recompensa_total = recompensa_total + recompensa_do_passo
         
-# Exibe o resultado do passo (JÁ ESTÁ PRONTO)
+# Exibe o resultado do passo
     print(f"   <- Resposta do Ambiente: Nova Posição={posicao_agente}, Recompensa={recompensa_do_passo}")
         
 # 4. VERIFIQUE SE O JOGO TERMINOU
 #    Se a condição de vitória foi atingida, paramos a simulação.
     if posicao_agente == POSICAO_COMIDA:
-        print("\nO agente encontrou a comida!")
+        print("\nO personagem encontrou a comida!")
         break
         
 # Pausa para visualização
