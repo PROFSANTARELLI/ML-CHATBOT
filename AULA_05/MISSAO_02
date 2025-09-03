@@ -233,45 +233,44 @@ print("-" * 30)
 
 # O agente tem no máximo 10 passos para tentar chegar à comida.
 for passo in range(10):
-print(f"Passo {passo + 1}:")
+    print(f"Passo {passo + 1}:")
     
 # O agente sempre toma a mesma AÇÃO: mover para a 'direita'.
-acao_agente = 'direita'
-print(f"   -> Ação do Agente: '{acao_agente}'")
+    acao_agente = 'direita'
+    print(f"   -> Ação do Agente: '{acao_agente}'")
 
 # 1. ATUALIZE A POSIÇÃO DO AGENTE
-#    Como a ação é sempre 'direita', simplesmente incrementamos a posição.
-posicao_agente = posicao_agente + 1
-    
+    #    Como a ação é sempre 'direita', simplesmente incrementamos a posição.
+    posicao_agente = posicao_agente + 1
+        
 # 2. CALCULE A RECOMPENSA DO PASSO
 #    Verificamos primeiro a condição de vitória.
-if posicao_agente == POSICAO_COMIDA:
-# Se chegou, recebe a recompensa positiva.
-  recompensa_do_passo = 20
+    if posicao_agente == POSICAO_COMIDA:
+        # Se chegou, recebe a recompensa positiva.
+        recompensa_do_passo = 20
     else:
-# Se ainda não chegou, recebe a penalidade de movimento.
+        # Se ainda não chegou, recebe a penalidade de movimento.
         recompensa_do_passo = -1
 
 # 3. ATUALIZE A RECOMPENSA TOTAL
 #    Acumulamos a recompensa do passo na variável total.
-recompensa_total = recompensa_total + recompensa_do_passo
-    
+    recompensa_total = recompensa_total + recompensa_do_passo
+        
 # Exibe o resultado do passo (JÁ ESTÁ PRONTO)
-print(f"   <- Resposta do Ambiente: Nova Posição={posicao_agente}, Recompensa={recompensa_do_passo}")
-    
+    print(f"   <- Resposta do Ambiente: Nova Posição={posicao_agente}, Recompensa={recompensa_do_passo}")
+        
 # 4. VERIFIQUE SE O JOGO TERMINOU
 #    Se a condição de vitória foi atingida, paramos a simulação.
-if posicao_agente == POSICAO_COMIDA:
-  print("\nO agente encontrou a comida!")
-break
-    
+    if posicao_agente == POSICAO_COMIDA:
+        print("\nO agente encontrou a comida!")
+        break
+        
 # Pausa para visualização
-time.sleep(1)
+    time.sleep(1)
 
 print("-" * 30)
 print(f"Simulação Finalizada! Recompensa total acumulada: {recompensa_total}")
-# Resultado esperado: O agente leva 4 passos, acumulando -4 de recompensa. No 4º passo, ele alcança
-# a comida e ganha +20. Recompensa total: (-1 * 3) + 20 = 17. Não, espera.
+# Resultado esperado: O agente leva 4 passos, acumulando -4 de recompensa. No 4º passo, ele alcança a comida e ganha +20. Recompensa total: (-1 * 3) + 20 = 17. Não, espera.
 # Passo 1: pos=1, rec=-1, total=-1
 # Passo 2: pos=2, rec=-1, total=-2
 # Passo 3: pos=3, rec=-1, total=-3
