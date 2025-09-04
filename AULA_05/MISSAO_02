@@ -1,7 +1,10 @@
 Nesta MISSÃO 02 os alunos deverão desenvolver novos algorítmos de Machine Learning em Aprendizado Supervisionado e não supervisionado e um exercício comentando de aprendizdo por reforço.
+
 VALOR DESTA MISSÃO: 0,25 na AC
 
-EXEC-01 -  Aprendizado Supervisionado – Aprender com Respostas - "No aprendizado supervisionado, nós damos ao modelo as perguntas (dados) e as respostas (rótulos) e ele precisa aprender a regra que os conecta. Pense em um gabarito de prova."
+
+EXEC-01 -  Aprendizado Supervisionado
+"No aprendizado supervisionado, nós damos ao modelo as perguntas (dados) e as respostas (rótulos) e ele precisa aprender a regra que os conecta. Pense em um gabarito de prova."
 
 #Aprendizado Supervisionado (Classificação)
 # -------------------------------------------------------------------------
@@ -44,9 +47,10 @@ print("-" * 50, "\n")
 
 
 
-
-EXEC-02 - Aprendizado Supervisionado (Regressão) - Crie um modelo que prevê o preço de um imóvel com base na sua área (m²) e no número de quartos. Usem LinearRegression."
+EXEC-02 - Aprendizado Supervisionado (Regressão)
+Crie um modelo que prevê o preço de um imóvel com base na sua área (m²) e no número de quartos. Usem LinearRegression."
 # -----------------------------------------------------------------------
+
 from sklearn.linear_model import LinearRegression
 
 print("--- Exercício 2 -  Missão 2 (Aprendizado Supervisionado) ---")
@@ -106,6 +110,8 @@ print("Observe como o algoritmo separou corretamente os clientes nos grupos 0 e 
 print("-" * 50, "\n")
 
 
+
+
 EXEC-04 - Aprendizado Não Supervisionado
 "Você é um analista de segurança. Sua missão é identificar transações fraudulentas (anomalias) em um conjunto de dados. Uma transação anômala geralmente está muito distante das outras."
 "Use o mesmo KMeans para agrupar as transações. A transação que ficar isolada em seu próprio cluster é provavelmente a anomalia."
@@ -135,7 +141,8 @@ print("-" * 50, "\n")
 
 
 
-EXERCICIO FINAL DA MISSÃO 2 - APRENDIZADO POR REFORÇO
+
+EXERCICIO FINAL - APRENDIZADO POR REFORÇO
 
 Imagine que você está ensinando um Doguinho a buscar um petisco. Você não escreve um manual de instruções para ele. Em vez disso, o processo é interativo:
 
@@ -148,6 +155,9 @@ Imagine que você está ensinando um Doguinho a buscar um petisco. Você não es
 O Aprendizado por Reforço é exatamente isso: um método de Machine Learning onde um agente aprende a tomar decisões em um ambiente para maximizar uma recompensa total ao longo do tempo.
 
 Exercício: Agente Comilão
+
+Sua Missão: Você vai preencher a lógica do ambiente. O agente sempre tentará se mover para a 'direita'. Você precisa atualizar a posição dele, verificar se ele alcançou a comida e calcular a recompensa a cada passo.
+
 Cenário: Nosso agente está em uma linha com 5 posições (0, 1, 2, 3, 4).
 O Agente: Um programa que só pode se mover para a 'direita'.
 O Ambiente: O caminho de 5 posições.
@@ -157,12 +167,13 @@ Regras de Recompensa:
 +20 pontos: Se o agente chegar na Comida.
 -1 ponto: Para cada passo que o agente der (representa o custo de energia).
 
-Sua Missão: Você vai preencher a lógica do ambiente. O agente sempre tentará se mover para a 'direita'. Você precisa atualizar a posição dele, verificar se ele alcançou a comida e calcular a recompensa a cada passo.
+
 
 # ==============================================================================
 # EXERCÍCIO 5 - APRENDIZADO POR REFORÇO: O PERSONAGEM COMILÃO
 # Objetivo: Entender o loop básico de interação do RL (Ação -> Recompensa).
 # ==============================================================================
+
 
 import time
 # --- CONFIGURAÇÃO DO AMBIENTE ---
