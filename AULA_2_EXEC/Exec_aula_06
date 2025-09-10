@@ -1,13 +1,16 @@
-Cada exercício foca em um conceito fundamental do design de ambientes de RL. Eles são projetados para serem resolvidos em sequência, construindo o conhecimento passo a passo. O objetivo é que os alunos implementem a lógica do ambiente, que é o primeiro passo para dominar o RL.
+Cada exercício foca em um conceito fundamental do design de ambientes de RL.
+Eles são projetados para serem resolvidos em sequência, construindo o conhecimento passo a passo.
+O objetivo é que os alunos implementem a lógica do ambiente, que é o primeiro passo para dominar o RL.
+
 Instruções para os Alunos
-Para cada exercício, você receberá um cenário e um código-fonte com seções marcadas como # TODO. Sua missão é preencher essas seções para que a simulação funcione de acordo com as regras descritas. No final de cada exercício, a solução completa é fornecida para sua referência.
+Para cada exercício, você receberá um cenário e um código-fonte com seções marcadas como # TODO.
+Sua missão é preencher essas seções para que a simulação funcione de acordo com as regras descritas.
+No final de cada exercício, a solução completa é fornecida para sua referência.
 
 Exercício Introdutório: Identificando os Componentes de RL em um Novo Cenário
 Objetivo: Consolidar a compreensão dos conceitos fundamentais do Aprendizado por Reforço (Agente, Ambiente, Estado, Ação, Recompensa, Política e Função de Valor) em um contexto diferente do labirinto.
-Cenário:
-Imagine que você está construindo um sistema de IA para ensinar um robô-aspirador a limpar eficientemente uma casa. O robô se move em diferentes cômodos, encontra sujeira e, eventualmente, precisa retornar à sua base para recarregar.
-Tarefa:
-Para este cenário do robô-aspirador, identifique e descreva cada um dos seguintes componentes de Aprendizado por Reforço:
+Cenário:Imagine que você está construindo um sistema de IA para ensinar um robô-aspirador a limpar eficientemente uma casa. O robô se move em diferentes cômodos, encontra sujeira e, eventualmente, precisa retornar à sua base para recarregar.
+Tarefa:Para este cenário do robô-aspirador, identifique e descreva cada um dos seguintes componentes de Aprendizado por Reforço:
 Agente:
 Ambiente:
 Estado (exemplifique alguns estados possíveis):
@@ -19,7 +22,7 @@ Função de Valor Q (o que ela tentaria estimar neste contexto?):
 
 EXERCICIOS PADRÕES
 Setup Inicial (para todos os exercícios):
-Crie um arquivo Python (ex: exercicios_rl.py) e instale a biblioteca NumPy:
+Crie um arquivo Python e instale a biblioteca NumPy:
 pip install numpy
 
 ---
