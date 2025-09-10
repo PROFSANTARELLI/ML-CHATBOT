@@ -81,7 +81,9 @@ Solução do Exercício 1:
 #         # Se não chegou, ele perde 1 ponto de 'recompensa_total' pelo esforço.
 #         recompensa_total -= 1
 #     time.sleep(0.5)
-# print(f"Simulação finalizada! Recompensa total: {recompensa_total}") # Resultado esperado: 4
+# print(f"Simulação finalizada! Recompensa total: {recompensa_total}") # Resultado esperado: 5
+
+
 Exercício 2: O Agente Indeciso
 Cenário: Agora o agente pode se mover para 'esquerda' ou 'direita' em um corredor de 10 posições (0 a 9). Ele não pode atravessar as paredes (posições < 0 ou > 9).
 Sua Missão: Implementar a lógica de movimento para ambas as direções e garantir que o agente permaneça dentro dos limites do corredor.
