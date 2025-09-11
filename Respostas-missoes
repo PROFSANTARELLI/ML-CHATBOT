@@ -1,1 +1,300 @@
-a criar
+EXERCÍCIO DA AULA 01
+#Importar bibliotecas
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+
+#Criar dataset
+frases = [
+    "Oi, tudo bem?",
+    "Bom dia!",
+    "Qual o saldo da minha conta?",
+    "Boa tarde",
+    "Quero falar com um atendente",
+    "Olá, como vai?",
+    "Me ajuda com o boleto",
+    "Até logo",
+    "Boa noite",
+    "Como faço um pix?"
+]
+categorias = [
+    "SAUDACAO", "SAUDACAO", "OUTRA", "SAUDACAO", "OUTRA",
+    "SAUDACAO", "OUTRA", "SAUDACAO", "SAUDACAO", "OUTRA"
+]
+
+# Passo 3: Criar modelo de classificação
+modelo = Pipeline([
+    ('vetorizacao', CountVectorizer()),
+    ('classificador', MultinomialNB())
+])
+
+#Treinar modelo
+modelo.fit(frases, categorias)
+
+#Fazer previsões
+entrada = input("Digite uma frase para o chatbot: ")
+saida = modelo.predict([entrada])
+print(f"Categoria prevista: {saida[0]}")
+
+
+EXERCICIOS AULA 02
+
+import re
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Função de pré-processamento
+def limpar_texto(texto):
+    texto = texto.lower()  # Converte para minúsculas
+    texto = re.sub(r'[^\w\s]', '', texto)  # Remove pontuação
+    texto = re.sub(r'\d+', '', texto)  # Remove números
+    texto = texto.strip()  # Remove espaços extras
+    return texto
+
+# 1. Conjunto de dados (mensagens + rótulos)
+mensagens = [
+    "Quero fazer um pedido",
+    "Preciso falar com o suporte",
+    "Quais promoções vocês têm hoje?",
+    "Qual o horário de funcionamento?",
+    "Meu produto veio com defeito",
+    "Posso pagar com cartão de crédito?"
+]
+rotulos = ["pedido", "suporte", "promoção", "informação", "suporte", "pagamento"]
+
+# 2. Pré-processamento das mensagens
+mensagens_limpas = [limpar_texto(m) for m in mensagens]
+
+# 3. Vetorização
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(mensagens_limpas)
+
+# 4. Treinamento do modelo
+modelo = MultinomialNB()
+modelo.fit(X, rotulos)
+
+# 5. Interação com o usuário
+while True:
+    nova_mensagem = input("\nDigite uma mensagem (ou 'sair' para encerrar): ")
+    if nova_mensagem.lower() == "sair":
+        break
+    nova_mensagem_limpa = limpar_texto(nova_mensagem)
+    X_novo = vectorizer.transform([nova_mensagem_limpa])
+    predicao = modelo.predict(X_novo)
+    print(f"Intenção prevista: {predicao[0]}")
+
+# ===== Aprendizado Não Supervisionado =====
+# Neste exemplo, usamos aprendizado não supervisionado para agrupar mensagens semelhantes sem informar ao modelo quais são suas categorias.
+
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.cluster import KMeans
+
+# 1. Matriz de mensagens (sem rótulos)
+mensagens = [
+    "Quero pedir pizza",
+    "Qual o valor da pizza grande?",
+    "Preciso de suporte no aplicativo",
+    "O app está travando",
+    "Vocês têm sobremesas?",
+    "Meu pedido está atrasado"
+]
+
+# 2. Vetorizar texto
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(mensagens)
+
+# 3. Criar modelo de agrupamento
+kmeans = KMeans(n_clusters=2, random_state=42, n_init=10)
+kmeans.fit(X)
+
+# 4. Mostrar os grupos encontrados
+print("\nAgrupamento de mensagens:")
+for i, msg in enumerate(mensagens):
+    print(f"'{msg}' => Cluster {kmeans.labels_[i]}")
+
+# 5. Interação: classificar nova frase
+while True:
+    nova_mensagem = input("\nDigite uma nova mensagem (ou 'sair' para encerrar): ")
+    if nova_mensagem.lower() == "sair":
+        break
+    X_novo = vectorizer.transform([nova_mensagem])
+    cluster_previsto = kmeans.predict(X_novo)
+    print(f"Essa mensagem se parece com o Cluster {cluster_previsto[0]}")
+
+# O algoritmo K-Means identificou padrões nas palavras e separou as mensagens em três grupos distintos com base na similaridade textual."
+
+# ===== Aprendizado por Reforço =====
+# Objetivo: Ensinar um agente a chegar até o objetivo final.
+# Paradigma: O agente aprende por tentativa e erro, recebendo recompensas.
+
+import numpy as np
+
+# 1. Configuração do ambiente
+n_states = 5        # Quantidade de posições (0 a 4)
+n_actions = 2       # 0 = ir para trás, 1 = ir para frente
+q_table = np.zeros((n_states, n_actions))  # Tabela Q inicial
+
+# 2. Hiperparâmetros do aprendizado
+alpha = 0.8   # taxa de aprendizado
+gamma = 0.95  # fator de desconto
+epsilon = 0.1 # probabilidade de explorar
+n_episodes = 100
+
+# 3. Treinamento
+for ep in range(n_episodes):
+    state = 0
+    done = False
+    while not done:
+        # Escolher ação (exploração ou exploração)
+        if np.random.uniform(0, 1) < epsilon:
+            action = np.random.choice(n_actions)  # Explorar
+        else:
+            action = np.argmax(q_table[state])    # Exploitar
+
+        # Movimento no ambiente
+        if action == 1:  # Ir para frente
+            new_state = min(state + 1, n_states - 1)
+        else:  # Ir para trás
+            new_state = max(state - 1, 0)
+
+        # Recompensa e finalização
+        reward = 1 if new_state == n_states - 1 else 0
+        done = new_state == n_states - 1
+
+        # Atualiza Q-table
+        q_table[state, action] = (1 - alpha) * q_table[state, action] + \
+                                 alpha * (reward + gamma * np.max(q_table[new_state]))
+        state = new_state
+
+print("\nQ-table final:")
+print(q_table)
+
+# 4. Interação: simular execução treinada
+while True:
+    entrada = input("\nDigite um estado inicial entre 0 e 4 (ou 'sair' para encerrar): ")
+    if entrada.lower() == "sair":
+        break
+    try:
+        pos = int(entrada)
+        while pos != n_states - 1:
+            acao = np.argmax(q_table[pos])
+            if acao == 1:
+                pos = min(pos + 1, n_states - 1)
+                print("→ Avançou para", pos)
+            else:
+                pos = max(pos - 1, 0)
+                print("← Voltou para", pos)
+        print("Objetivo alcançado!")
+    except:
+        print("Digite um número válido!")
+
+
+AULA 03
+#APRENDIZADO SUPERVISIONADO
+# Conceito: O algoritmo aprende de um conjunto de dados que contém as "respostas certas" (rótulos).
+# Analogia: Aprender para uma prova usando um livro com gabarito.
+# ==============================================================================
+# Exemplo: Classificação de Frutas
+# Problema: Prever se uma fruta é uma Maçã ou uma Laranja com base no seu peso e textura.
+# ------------------------------------------------------------------------------
+from sklearn.neighbors import KNeighborsClassifier
+
+print("\n--- Exemplo Supervisionado ---")
+
+# Dados de Treino:
+# Característica 1: Peso em gramas
+# Característica 2: Textura (0 para Lisa, 1 para Cascuda/Irregular)
+# Formato: [peso, textura]
+dados_frutas = np.array([
+    [150, 0], [170, 0], # Maçãs (lisas)
+    [140, 1], [130, 1]  # Laranjas (cascudas)
+])
+
+# Rótulos (Labels): As respostas corretas que o algoritmo deve aprender.
+# 0 = Laranja, 1 = Maçã
+rotulos_frutas = np.array([1, 1, 0, 0])
+
+# Criando o modelo de classificação (K-Nearest Neighbors). Ele classifica um novo dado com base nos seus 'k' vizinhos mais próximos.
+modelo_frutas = KNeighborsClassifier(n_neighbors=1)
+
+# Treinando o modelo: O comando .fit() é onde o aprendizado acontece.
+modelo_frutas.fit(dados_frutas, rotulos_frutas)
+
+# Fazendo previsão para uma nova fruta misteriosa.
+# Ex: Uma fruta com 160g e textura lisa (0).
+fruta_misteriosa = np.array([[160, 0]])
+previsao = modelo_frutas.predict(fruta_misteriosa)
+
+resultado = "Maçã" if previsao[0] == 1 else "Laranja"
+print(f"A fruta misteriosa de [160g, Lisa] foi classificada como: {resultado}")
+
+
+# APRENDIZADO NÃO SUPERVISIONADO
+# Conceito: O algoritmo recebe dados SEM rótulos e sua tarefa é encontrar padrões, estruturas ou grupos (clusters) escondidos nos dados.
+# Analogia: Organizar uma caixa de ferramentas sem saber o nome de cada item, agrupando-os por similaridade (chaves de fenda, martelos, etc).
+# ==============================================================================
+# Exemplo: Segmentação de Jogadores
+# Problema: Identificar perfis de jogadores com base nas horas jogadas e nos itens comprados, sem saber previamente quais perfis existem.
+# ------------------------------------------------------------------------------
+from sklearn.cluster import KMeans
+
+print("\n--- 2.1 Exemplo Não Supervisionado ---")
+
+# Dados: [horas_jogadas_semana, itens_comprados_mes]
+# Note que não temos 'y' (rótulos). O algoritmo vai criá-los.
+dados_jogadores = np.array([
+    [5, 2], [8, 3], [4, 1],    # Jogadores Casuais
+    [40, 15], [50, 20], [45, 18] # Jogadores Hardcore
+])
+
+# Criando o modelo KMeans e pedindo para ele encontrar 2 grupos (clusters).
+kmeans = KMeans(n_clusters=2, random_state=42, n_init=10)
+
+# Treinando o modelo e atribuindo um cluster para cada jogador.
+clusters = kmeans.fit_predict(dados_jogadores)
+
+print(f"Dados dos jogadores:\n{dados_jogadores}")
+print(f"Cluster atribuído a cada jogador: {clusters}")
+print("Observe como o KMeans separou os jogadores em dois grupos (0 e 1) com sucesso!")
+
+# APRENDIZADO POR REFORÇO
+# Conceito: Um "agente" aprende a tomar decisões em um "ambiente" para maximizar uma recompensa ao longo do tempo.
+# Analogia: Adestrar um cão com petiscos. Ação certa -> Recompensa.
+#           Não vamos usar uma biblioteca aqui, apenas simular a lógica.
+# ==============================================================================
+
+print("\n--- 3.1 Exemplo do Professor (Reforço) ---")
+
+# Simulação: Um agente tentando chegar ao final de um corredor.
+# Posições: 0, 1, 2, 3, 4 (Objetivo)
+posicao_agente = 0
+objetivo = 4
+recompensa_total = 0
+
+print(f"Início: Agente na posição {posicao_agente}")
+
+# O agente tem 10 "passos" de tempo para tentar.
+for passo in range(10):
+    # O agente toma uma ação aleatória: 0 (ficar parado) ou 1 (avançar).
+    acao = np.random.randint(0, 2)
+    
+    # O ambiente atualiza o estado e dá uma recompensa.
+    if acao == 1:
+        posicao_agente += 1
+        recompensa = -1 # Custo de energia para se mover.
+        print(f"Passo {passo+1}: Agente avançou para a posição {posicao_agente}.")
+    else:
+        recompensa = -2 # Penalidade maior por ficar parado.
+        print(f"Passo {passo+1}: Agente ficou parado na posição {posicao_agente}.")
+    
+    recompensa_total += recompensa
+
+    # Verificação de condição de término.
+    if posicao_agente == objetivo:
+        print("Objetivo alcançado! Ganhando recompensa bônus de +100!")
+        recompensa_total += 100
+        break
+
+print(f"\nSimulação finalizada! Recompensa total acumulada: {recompensa_total}")
