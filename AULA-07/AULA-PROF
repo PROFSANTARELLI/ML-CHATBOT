@@ -1,0 +1,133 @@
+Tema: Algoritmos Clássicos (Regressão, KNN e Árvores de Decisão)
+Objetivo: entender a intuição por trás de cada algoritmo e saber em que tipo de problema cada um se destaca.
+
+Analogias: 
+ - Regressão Linear: O Desenhista de Linhas. O objetivo é encontrar a melhor linha reta que resume a tendência dos dados.
+ - KNN (K-Nearest Neighbors): O Voto da Vizinhança. Para decidir quem você é, olhamos para seus vizinhos mais próximos. "Diga-me com quem andas e te direi quem és."
+ - Árvores de Decisão: O Jogo de "Cara a Cara" ou um Fluxograma. O algoritmo aprende a fazer uma série de perguntas de "sim/não" para chegar a uma conclusão.
+
+Estrutura:
+Regressão Linear:
+Intuição: Apresente um gráfico de dispersão (ex: Área de uma casa vs. Preço) e explique que o objetivo é traçar uma linha que minimize a distância para todos os pontos.
+Quando usar: Para prever valores numéricos contínuos.
+Código: Crie um pequeno dataset com numpy, importe LinearRegression da sklearn, treine (.fit()) e preveja (.predict()). Mostre o resultado.
+
+Explicação Inicial):
+"Vamos começar com o algoritmo mais intuitivo: a Regressão Linear. Pensem nela como 'o desenhista de linhas'.
+Se você tem um conjunto de pontos em um gráfico, a Regressão Linear tenta encontrar a melhor linha reta que passa por esses pontos, resumindo a tendência geral."
+"O objetivo é prever um valor numérico contínuo. Por exemplo, prever o preço de uma casa com base na sua área, ou a nota de um aluno com base nas horas de estudo.
+A linha que o modelo 'aprende' nos permite fazer previsões para novos dados que nunca vimos antes."
+
+Exemplo: Prever Gorjeta
+
+# EXEMPLO REGRESSÃO LINEAR
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+print("--- 1.1: Exemplo - Regressão Linear (Prever Gorjeta) ---")
+
+# X: Característica (Feature) -> Valor da conta em R$
+# Precisamos formatar como uma matriz 2D, por isso o .reshape(-1, 1)
+X_contas = np.array([10, 20, 30, 45, 50, 65, 70, 80]).reshape(-1, 1)
+
+# y: Rótulo (Label) -> Valor da gorjeta em R$
+y_gorjetas = np.array([1.5, 3.0, 4.0, 6.0, 7.5, 9.0, 10.0, 12.0])
+
+# 1. Criar o modelo de Regressão Linear
+modelo_gorjeta = LinearRegression()
+
+# 2. Treinar o modelo com nossos dados
+# O .fit() encontra a melhor linha que descreve a relação entre X e y
+modelo_gorjeta.fit(X_contas, y_gorjetas)
+
+# 3. Fazer uma previsão para um novo valor
+# Qual seria a gorjeta para uma conta de R$ 55?
+nova_conta = np.array([[55]]) # Precisa ser um array 2D
+gorjeta_prevista = modelo_gorjeta.predict(nova_conta)
+
+print(f"Dados das contas (X):\n{X_contas.flatten()}")
+print(f"Dados das gorjetas (y):\n{y_gorjetas}")
+print("-" * 20)
+print(f"Para uma conta de R$ 55.00, a gorjeta prevista é: R$ {gorjeta_prevista[0]:.2f}")
+
+
+
+
+KNN (K-Nearest Neighbors):
+Intuição: Mostre um gráfico com pontos de duas cores (duas classes). Adicione um ponto novo (cinza) e pergunte: "a qual grupo ele pertence?". Desenhe um círculo ao redor dele para encontrar os k vizinhos mais próximos e conte os votos.
+Quando usar: Para problemas de classificação. É simples e poderoso, especialmente quando a fronteira entre as classes não é linear.
+
+Explicação:
+Para classificar um novo dado, o KNN olha para os 'K' vizinhos mais próximos a ele nos dados de treino.
+A classe que aparecer mais vezes entre esses vizinhos (o voto da maioria) será a previsão para o novo dado. É um algoritmo democrático!
+
+Exemplo: Classificar Frutas
+#  EXEMPLO  - KNN
+from sklearn.neighbors import KNeighborsClassifier
+
+print("\n--- 2.1: Exemplo - KNN (Classificar Frutas) ---")
+
+# X: [peso em gramas, textura (0=lisa, 1=cascuda)]
+X_frutas = np.array([
+    [150, 0], [170, 0], [180, 0], # Maçãs
+    [130, 1], [120, 1], [140, 1]  # Laranjas
+])
+# y: 0=Laranja, 1=Maçã
+y_frutas = np.array([1, 1, 1, 0, 0, 0])
+
+# 1. Criar o modelo KNN
+# n_neighbors=3 significa que ele vai consultar os 3 vizinhos mais próximos.
+modelo_frutas = KNeighborsClassifier(n_neighbors=3)
+
+# 2. Treinar o modelo
+modelo_frutas.fit(X_frutas, y_frutas)
+
+# 3. Fazer uma previsão para uma nova fruta: 160g e textura lisa (0)
+fruta_nova = np.array([[160, 0]])
+previsao = modelo_frutas.predict(fruta_nova)
+
+# Traduzindo a previsão numérica para texto
+resultado = "Maçã" if previsao[0] == 1 else "Laranja"
+print(f"Dados das Frutas:\n{X_frutas}")
+print(f"Rótulos: {y_frutas}")
+print("-" * 20)
+print(f"Uma fruta de [160g, lisa] foi classificada como: {resultado}")
+
+
+
+
+Árvores de Decisão:
+Intuição: Use a analogia do fluxograma para decidir se "jogo tênis hoje?". As perguntas são: "O tempo está ensolarado?", "A umidade está alta?". Mostre como isso forma uma árvore.
+Quando usar: Quando a interpretabilidade é importante. Você pode literalmente ver as regras que o modelo criou. Bom para classificação e regressão.
+
+Explicação:
+Árvore de Decisão. Pensem nela como um fluxograma ou o jogo 'Cara a Cara'. O modelo aprende uma série de perguntas de 'sim' ou 'não' para chegar a uma decisão.
+A maior vantagem das Árvores de Decisão é a interpretabilidade. Nós podemos literalmente ver as 'regras' que o modelo aprendeu. Elas são excelentes para entender por que uma decisão foi tomada.
+
+Exemplo: Decidir se Vai Jogar
+
+# EXEMPLO  ÁRVORES DE DECISÃO
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+import matplotlib.pyplot as plt
+
+print("\n--- 3.1: Exemplo - Árvore de Decisão (Jogar ou não?) ---")
+
+# X: [Tempo (0=Sol, 1=Nublado, 2=Chuva), Umidade (0=Normal, 1=Alta)]
+X_clima = np.array([[0, 0], [0, 1], [1, 0], [2, 0], [2, 1], [1, 1]])
+# y: 0=Não Joga, 1=Joga
+y_decisao = np.array([1, 0, 1, 1, 0, 0])
+
+# 1. Criar e treinar o modelo
+modelo_arvore = DecisionTreeClassifier(random_state=42)
+modelo_arvore.fit(X_clima, y_decisao)
+
+# 2. Fazer uma previsão: Tempo=Sol (0), Umidade=Normal (0)
+previsao_clima = modelo_arvore.predict(np.array([[0, 0]]))
+resultado_clima = "Joga" if previsao_clima[0] == 1 else "Não Joga"
+print(f"Para um dia de Sol e Umidade Normal, a decisão é: {resultado_clima}")
+
+# 3. Visualizar a árvore (a parte mais legal!)
+plt.figure(figsize=(8, 6))
+plot_tree(modelo_arvore, feature_names=['Tempo', 'Umidade'], class_names=['Não Joga', 'Joga'], filled=True)
+plt.title("Árvore de Decisão para Jogar")
+plt.show()
