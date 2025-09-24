@@ -8,14 +8,10 @@ Analogias:
 
 Estrutura:
 Regressão Linear:
-Intuição: Apresente um gráfico de dispersão (ex: Área de uma casa vs. Preço) e explique que o objetivo é traçar uma linha que minimize a distância para todos os pontos.
-Quando usar: Para prever valores numéricos contínuos.
-Código: Crie um pequeno dataset com numpy, importe LinearRegression da sklearn, treine (.fit()) e preveja (.predict()). Mostre o resultado.
-
-Explicação Inicial):
+Encontrar a melhor linha reta que resume a tendência dos dados.
+Se você tem um conjunto de pontos em um gráfico, a Regressão Linear tenta encontrar a melhor linha reta que passa por esses pontos, resumindo a tendência geral.
 O objetivo é prever um valor numérico contínuo. Por exemplo, prever o preço de uma casa com base na sua área, ou a nota de um aluno com base nas horas de estudo.
-A linha que o modelo 'aprende' nos permite fazer previsões para novos dados que nunca vimos antes.
-Se você tem um conjunto de pontos em um gráfico, a Regressão Linear tenta encontrar a melhor linha reta que passa por esses pontos, resumindo a tendência geral."
+A linha que o modelo 'aprende' nos permite fazer previsões para novos dados.
 
 Exemplo: Prever Gorjeta
 
@@ -23,7 +19,7 @@ Exemplo: Prever Gorjeta
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-print("--- 1.1: Exemplo - Regressão Linear (Prever Gorjeta) ---")
+print("Exemplo - Regressão Linear (Prever Gorjeta) ---")
 
 # X: Característica (Feature) -> Valor da conta em R$
 # Precisamos formatar como uma matriz 2D, por isso o .reshape(-1, 1)
