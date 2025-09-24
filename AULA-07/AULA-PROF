@@ -3,7 +3,7 @@ Objetivo: entender a intuição por trás de cada algoritmo e saber em que tipo 
 
 Analogias: 
  - Regressão Linear: O Desenhista de Linhas. O objetivo é encontrar a melhor linha reta que resume a tendência dos dados.
- - KNN (K-Nearest Neighbors): O Voto da Vizinhança. Para decidir quem você é, olhamos para seus vizinhos mais próximos. "Diga-me com quem andas e te direi quem és."
+ - KNN (K-Nearest Neighbors): Vizinhança. Para decidir quem você é, olhamos para seus vizinhos mais próximos.
  - Árvores de Decisão: O Jogo de "Cara a Cara" ou um Fluxograma. O algoritmo aprende a fazer uma série de perguntas de "sim/não" para chegar a uma conclusão.
 
 Estrutura:
