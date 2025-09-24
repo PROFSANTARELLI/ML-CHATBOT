@@ -1,0 +1,212 @@
+MISSÃO 03 - VALOR 0,25
+
+REGRESSÃO LINEAR
+Exercício: Prever Pontuação em Jogo
+Sua Tarefa: Crie um modelo que prevê a pontuação final de um jogador com base no número de horas que ele jogou.
+
+# EXERCÍCIO - PREVER PONTUAÇÃO EM JOGO
+print("\n--- 1.2: Exercício - Prever Pontuação ---")
+# X: Horas jogadas
+horas_jogadas = np.array([1, 3, 5, 8, 10]).reshape(-1, 1)
+# y: Pontuação final (em milhares)
+pontuacao_final = np.array([10, 25, 60, 90, 110])
+
+# TODO: Crie uma instância do modelo LinearRegression.
+# modelo_pontuacao = ???
+
+# TODO: Treine o modelo com os dados de horas jogadas e pontuação.
+# ???.fit(???, ???)
+
+# TODO: Preveja a pontuação para um jogador que jogou por 7 horas.
+# horas_novas = np.array([[7]])
+# pontuacao_prevista = ???.predict(???)
+
+# print(f"Para 7 horas jogadas, a pontuação prevista é de {pontuacao_prevista[0]:.0f} mil pontos.")
+
+Exercício para Alunos: Prever Temperatura
+Sua Tarefa: Você tem dados da temperatura em uma cidade com base na altitude (em metros). Crie um modelo para prever a temperatura a 2500 metros.
+#EXERCÍCIO - PREVER TEMPERATURA
+print("\n--- 1.3: Exercício - Prever Temperatura ---")
+# X: Altitude em metros
+altitudes = np.array([500, 1000, 1500, 2000, 3000]).reshape(-1, 1)
+# y: Temperatura em Celsius
+temperaturas = np.array([25, 20, 15, 10, 5])
+
+# TODO: Crie e treine um modelo de Regressão Linear com estes dados.
+# modelo_temp = ???
+# modelo_temp.fit(???, ???)
+
+# TODO: Faça a previsão da temperatura para uma altitude de 2500 metros.
+# altitude_nova = np.array([[2500]])
+# temp_prevista = ???.predict(???)
+
+
+
+
+ K-Nearest Neighbors (KNN)
+Exercício: Aprovado ou Reprovado?
+Sua Tarefa: Crie um modelo KNN que classifica se um aluno foi aprovado (1) ou reprovado (0) com base em duas notas.
+
+# EXERCÍCIO - APROVADO OU REPROVADO?
+print("\n--- 2.2: Exercício - Aprovado/Reprovado ---")
+# X: [nota_prova_1, nota_prova_2]
+notas_alunos = np.array([[8, 7], [5, 4], [9, 8], [4, 2], [7, 9], [3, 5]])
+# y: 0=Reprovado, 1=Aprovado
+situacao = np.array([1, 0, 1, 0, 1, 0])
+
+# TODO: Crie uma instância do modelo KNeighborsClassifier com 3 vizinhos.
+# modelo_alunos = ???
+
+# TODO: Treine o modelo com os dados dos alunos.
+# ???.fit(???, ???)
+
+# TODO: Preveja a situação de um aluno com notas 6 e 7.
+# aluno_novo = np.array([[6, 7]])
+# previsao_aluno = ???.predict(???)
+
+# resultado_aluno = "Aprovado" if previsao_aluno[0] == 1 else "Reprovado"
+# print(f"Um aluno com notas [6, 7] foi classificado como: {resultado_aluno}")
+
+
+Exercício para Alunos: Classificar Veículo
+Sua Tarefa: Crie um modelo KNN para classificar um veículo como 'Carro', 'Moto' ou 'Caminhão' com base no seu peso (em kg) e número de rodas.
+
+# PARTE 2.3: EXERCÍCIO - CLASSIFICAR VEÍCULO
+print("\n--- 2.3: Exercício - Classificar Veículo ---")
+# X: [peso_kg, numero_rodas]
+dados_veiculos = np.array([[150, 2], [1500, 4], [8000, 6], [180, 2], [2000, 4], [10000, 8]])
+# y: 0=Moto, 1=Carro, 2=Caminhão
+tipo_veiculo = np.array([0, 1, 2, 0, 1, 2])
+
+# TODO: Crie e treine um modelo KNN com 3 vizinhos para estes dados.
+# modelo_veiculo = ???
+# ???.fit(???, ???)
+
+# TODO: Preveja o tipo de um veículo com 1800 kg e 4 rodas.
+# veiculo_novo = np.array([[1800, 4]])
+# previsao_veiculo = ???.predict(???)
+
+# mapa_veiculos = {0: 'Moto', 1: 'Carro', 2: 'Caminhão'}
+# resultado_veiculo = mapa_veiculos[previsao_veiculo[0]]
+# print(f"Um veículo de [1800 kg, 4 rodas] foi classificado como: {resultado_veiculo}")
+
+
+
+Árvores de Decisão
+Exercício: Aprovar Empréstimo
+Sua Tarefa: Crie uma árvore de decisão para aprovar (1) ou negar (0) um empréstimo com base na renda anual (em milhares) e se a pessoa possui casa própria (1=Sim, 0=Não).
+# EXERCÍCIO - APROVAR EMPRÉSTIMO
+print("\n--- 3.2: Exercício - Aprovar Empréstimo ---")
+# X: [renda_anual_milhar, casa_propria]
+dados_credito = np.array([[50, 1], [30, 0], [80, 1], [40, 0], [120, 1], [70, 0]])
+# y: 0=Negado, 1=Aprovado
+decisao_credito = np.array([1, 0, 1, 0, 1, 1])
+
+# TODO: Crie e treine um modelo DecisionTreeClassifier.
+# modelo_credito = ???
+# ???.fit(???, ???)
+
+# TODO: Preveja a decisão para alguém com renda de 90 mil e casa própria.
+# novo_cliente = np.array([[90, 1]])
+# previsao_credito = ???.predict(???)
+
+# resultado_credito = "Aprovado" if previsao_credito[0] == 1 else "Negado"
+# print(f"Decisão para o cliente [R$90k, Casa Própria]: {resultado_credito}")
+
+# TODO (Opcional): Plote a árvore de decisão para este modelo.
+
+
+Exercício: Diagnóstico Médico Simples
+Sua Tarefa: Crie uma árvore de decisão para diagnosticar se um paciente tem 'Gripe' ou 'Resfriado' com base na febre e na intensidade da tosse.
+#EXERCÍCIO - DIAGNÓSTICO MÉDICO
+print("\n--- 3.3: Exercício - Diagnóstico Médico ---")
+# X: [febre (0=Não, 1=Sim), tosse (0=Leve, 1=Forte)]
+sintomas = np.array([[1, 1], [0, 0], [1, 0], [0, 1], [1, 1], [0, 0]])
+# y: 0=Resfriado, 1=Gripe
+diagnostico = np.array([1, 0, 0, 0, 1, 0])
+
+# TODO: Crie e treine um modelo de árvore de decisão.
+# modelo_saude = ???
+# ???.fit(???, ???)
+
+# TODO: Preveja o diagnóstico para um paciente com febre (1) e tosse leve (0).
+# novo_paciente = np.array([[1, 0]])
+# previsao_saude = ???.predict(???)
+
+# mapa_diagnostico = {0: 'Resfriado', 1: 'Gripe'}
+# resultado_saude = mapa_diagnostico[previsao_saude[0]]
+# print(f"Diagnóstico para [Febre=Sim, Tosse=Leve]: {resultado_saude}")
+
+# print(f"A temperatura prevista a 2500 metros é de {temp_prevista[0]:.1f}°C.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Soluções Comentadas - Parte 1
+# modelo_pontuacao = LinearRegression()
+# modelo_pontuacao.fit(horas_jogadas, pontuacao_final)
+# horas_novas = np.array([[7]])
+# pontuacao_prevista = modelo_pontuacao.predict(horas_novas)
+# print(f"Para 7 horas jogadas, a pontuação prevista é de {pontuacao_prevista[0]:.0f} mil pontos.")
+
+
+# modelo_temp = LinearRegression()
+# modelo_temp.fit(altitudes, temperaturas)
+# altitude_nova = np.array([[2500]])
+# temp_prevista = modelo_temp.predict(altitude_nova)
+# print(f"A temperatura prevista a 2500 metros é de {temp_prevista[0]:.1f}°C.")
+
+
+Soluções Comentadas - Parte 2
+# modelo_alunos = KNeighborsClassifier(n_neighbors=3)
+# modelo_alunos.fit(notas_alunos, situacao)
+# aluno_novo = np.array([[6, 7]])
+# previsao_aluno = modelo_alunos.predict(aluno_novo)
+# resultado_aluno = "Aprovado" if previsao_aluno[0] == 1 else "Reprovado"
+# print(f"Um aluno com notas [6, 7] foi classificado como: {resultado_aluno}")
+
+
+# modelo_veiculo = KNeighborsClassifier(n_neighbors=3)
+# modelo_veiculo.fit(dados_veiculos, tipo_veiculo)
+# veiculo_novo = np.array([[1800, 4]])
+# previsao_veiculo = modelo_veiculo.predict(veiculo_novo)
+# mapa_veiculos = {0: 'Moto', 1: 'Carro', 2: 'Caminhão'}
+# resultado_veiculo = mapa_veiculos[previsao_veiculo[0]]
+# print(f"Um veículo de [1800 kg, 4 rodas] foi classificado como: {resultado_veiculo}")
+
+
+
+
+Soluções Comentadas - Parte 3
+# modelo_credito = DecisionTreeClassifier(random_state=42)
+# modelo_credito.fit(dados_credito, decisao_credito)
+# novo_cliente = np.array([[90, 1]])
+# previsao_credito = modelo_credito.predict(novo_cliente)
+# resultado_credito = "Aprovado" if previsao_credito[0] == 1 else "Negado"
+# print(f"Decisão para o cliente [R$90k, Casa Própria]: {resultado_credito}")
+# # Plot Opcional
+# plt.figure(figsize=(8, 6))
+# plot_tree(modelo_credito, feature_names=['Renda (k)', 'Casa Própria'], class_names=['Negado', 'Aprovado'], filled=True)
+# plt.title("Árvore de Decisão para Crédito")
+# plt.show()
+
+
+# modelo_saude = DecisionTreeClassifier(random_state=42)
+# modelo_saude.fit(sintomas, diagnostico)
+# novo_paciente = np.array([[1, 0]])
+# previsao_saude = modelo_saude.predict(novo_paciente)
+# mapa_diagnostico = {0: 'Resfriado', 1: 'Gripe'}
+# resultado_saude = mapa_diagnostico[previsao_saude[0]]
+# print(f"Diagnóstico para [Febre=Sim, Tosse=Leve]: {resultado_saude}")
