@@ -13,10 +13,9 @@ Quando usar: Para prever valores numéricos contínuos.
 Código: Crie um pequeno dataset com numpy, importe LinearRegression da sklearn, treine (.fit()) e preveja (.predict()). Mostre o resultado.
 
 Explicação Inicial):
-"Vamos começar com o algoritmo mais intuitivo: a Regressão Linear. Pensem nela como 'o desenhista de linhas'.
+O objetivo é prever um valor numérico contínuo. Por exemplo, prever o preço de uma casa com base na sua área, ou a nota de um aluno com base nas horas de estudo.
+A linha que o modelo 'aprende' nos permite fazer previsões para novos dados que nunca vimos antes.
 Se você tem um conjunto de pontos em um gráfico, a Regressão Linear tenta encontrar a melhor linha reta que passa por esses pontos, resumindo a tendência geral."
-"O objetivo é prever um valor numérico contínuo. Por exemplo, prever o preço de uma casa com base na sua área, ou a nota de um aluno com base nas horas de estudo.
-A linha que o modelo 'aprende' nos permite fazer previsões para novos dados que nunca vimos antes."
 
 Exemplo: Prever Gorjeta
 
