@@ -127,3 +127,61 @@ plt.figure(figsize=(8, 6))
 plot_tree(modelo_arvore, feature_names=['Tempo', 'Umidade'], class_names=['Não Joga', 'Joga'], filled=True)
 plt.title("Árvore de Decisão para Jogar")
 plt.show()
+
+
+Soluções Comentadas - Parte 1
+# modelo_pontuacao = LinearRegression()
+# modelo_pontuacao.fit(horas_jogadas, pontuacao_final)
+# horas_novas = np.array([[7]])
+# pontuacao_prevista = modelo_pontuacao.predict(horas_novas)
+# print(f"Para 7 horas jogadas, a pontuação prevista é de {pontuacao_prevista[0]:.0f} mil pontos.")
+
+
+# modelo_temp = LinearRegression()
+# modelo_temp.fit(altitudes, temperaturas)
+# altitude_nova = np.array([[2500]])
+# temp_prevista = modelo_temp.predict(altitude_nova)
+# print(f"A temperatura prevista a 2500 metros é de {temp_prevista[0]:.1f}°C.")
+
+
+Soluções Comentadas - Parte 2
+# modelo_alunos = KNeighborsClassifier(n_neighbors=3)
+# modelo_alunos.fit(notas_alunos, situacao)
+# aluno_novo = np.array([[6, 7]])
+# previsao_aluno = modelo_alunos.predict(aluno_novo)
+# resultado_aluno = "Aprovado" if previsao_aluno[0] == 1 else "Reprovado"
+# print(f"Um aluno com notas [6, 7] foi classificado como: {resultado_aluno}")
+
+
+# modelo_veiculo = KNeighborsClassifier(n_neighbors=3)
+# modelo_veiculo.fit(dados_veiculos, tipo_veiculo)
+# veiculo_novo = np.array([[1800, 4]])
+# previsao_veiculo = modelo_veiculo.predict(veiculo_novo)
+# mapa_veiculos = {0: 'Moto', 1: 'Carro', 2: 'Caminhão'}
+# resultado_veiculo = mapa_veiculos[previsao_veiculo[0]]
+# print(f"Um veículo de [1800 kg, 4 rodas] foi classificado como: {resultado_veiculo}")
+
+
+
+
+Soluções Comentadas - Parte 3
+# modelo_credito = DecisionTreeClassifier(random_state=42)
+# modelo_credito.fit(dados_credito, decisao_credito)
+# novo_cliente = np.array([[90, 1]])
+# previsao_credito = modelo_credito.predict(novo_cliente)
+# resultado_credito = "Aprovado" if previsao_credito[0] == 1 else "Negado"
+# print(f"Decisão para o cliente [R$90k, Casa Própria]: {resultado_credito}")
+# # Plot Opcional
+# plt.figure(figsize=(8, 6))
+# plot_tree(modelo_credito, feature_names=['Renda (k)', 'Casa Própria'], class_names=['Negado', 'Aprovado'], filled=True)
+# plt.title("Árvore de Decisão para Crédito")
+# plt.show()
+
+
+# modelo_saude = DecisionTreeClassifier(random_state=42)
+# modelo_saude.fit(sintomas, diagnostico)
+# novo_paciente = np.array([[1, 0]])
+# previsao_saude = modelo_saude.predict(novo_paciente)
+# mapa_diagnostico = {0: 'Resfriado', 1: 'Gripe'}
+# resultado_saude = mapa_diagnostico[previsao_saude[0]]
+# print(f"Diagnóstico para [Febre=Sim, Tosse=Leve]: {resultado_saude}")
