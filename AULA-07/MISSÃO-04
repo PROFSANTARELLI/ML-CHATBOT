@@ -11,7 +11,7 @@ Se você tem um conjunto de pontos em um gráfico, a Regressão Linear tenta enc
 O objetivo é prever um valor numérico contínuo. Por exemplo, prever o preço de uma casa com base na sua área, ou a nota de um aluno com base nas horas de estudo.
 A linha que o modelo 'aprende' nos permite fazer previsões para novos dados.
 
-
+#EXERCICIO 01
 print("Regressão Linear (Prever Gorjeta) ---")
 import numpy as np
 from sklearn.linear_model import LinearRegression
@@ -40,6 +40,8 @@ print(f"Dados das gorjetas (y):\n{y_gorjetas}")
 print("-" * 20)
 print(f"Para uma conta de R$ 55.00, a gorjeta prevista é: R$ {gorjeta_prevista[0]:.2f}")
 
+
+#EXERCICIO 02
 Exercício: Prever Pontuação em Jogo
 Sua Tarefa: Crie um modelo que prevê a pontuação final de um jogador com base no número de horas que ele jogou.
 
@@ -62,7 +64,8 @@ pontuacao_final = np.array([10, 25, 60, 90, 110])
 
 # print(f"Para 7 horas jogadas, a pontuação prevista é de {pontuacao_prevista[0]:.0f} mil pontos.")
 
-Exercício para Alunos: Prever Temperatura
+
+#EXERCICIO 03
 Sua Tarefa: Você tem dados da temperatura em uma cidade com base na altitude (em metros). Crie um modelo para prever a temperatura a 2500 metros.
 #EXERCÍCIO - PREVER TEMPERATURA
 print("\n--- 1.3: Exercício - Prever Temperatura ---")
@@ -149,7 +152,8 @@ print(f"Rótulos: {y_frutas}")
 print("-" * 20)
 print(f"Uma fruta de [160g, lisa] foi classificada como: {resultado}")
 
-Exercício: Aprovado ou Reprovado?
+
+#EXERCICIO 04
 Sua Tarefa: Crie um modelo KNN que classifica se um aluno foi aprovado (1) ou reprovado (0) com base em duas notas.
 
 # EXERCÍCIO - APROVADO OU REPROVADO?
@@ -266,7 +270,8 @@ plot_tree(modelo_arvore, feature_names=['Tempo', 'Umidade'], class_names=['Não 
 plt.title("Árvore de Decisão para Jogar")
 plt.show()
 
-Exercício: Aprovar Empréstimo
+
+#EXERCICIO 05
 Sua Tarefa: Crie uma árvore de decisão para aprovar (1) ou negar (0) um empréstimo com base na renda anual (em milhares) e se a pessoa possui casa própria (1=Sim, 0=Não).
 # EXERCÍCIO - APROVAR EMPRÉSTIMO
 print("\n--- 3.2: Exercício - Aprovar Empréstimo ---")
@@ -289,7 +294,7 @@ decisao_credito = np.array([1, 0, 1, 0, 1, 1])
 # TODO (Opcional): Plote a árvore de decisão para este modelo.
 
 
-Exercício: Diagnóstico Médico Simples
+#EXERCICIO 06
 Sua Tarefa: Crie uma árvore de decisão para diagnosticar se um paciente tem 'Gripe' ou 'Resfriado' com base na febre e na intensidade da tosse.
 #EXERCÍCIO - DIAGNÓSTICO MÉDICO
 print("\n--- 3.3: Exercício - Diagnóstico Médico ---")
