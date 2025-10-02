@@ -1,6 +1,6 @@
 AULA PRÉ-PROCESSAMENTO DE DADO
 
-Os dados que encontramos no mundo real raramente são perfeitos. Eles podem ser "sujos", ou seja, podem conter:
+Os dados que no mundo real raramente são perfeitos. Eles podem ser "sujos", ou seja, podem conter:
  - Valores Ausentes: Campos não preenchidos (ex: um cliente sem idade registrada).
  - Dados Inconsistentes: Erros de digitação ou formatos diferentes (ex: "São Paulo", "SP", "S. Paulo").
  - Outliers: Valores extremos que fogem muito do padrão (ex: uma casa de 20m² custando R$ 5 milhões).
