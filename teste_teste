@@ -1,4 +1,4 @@
-Prevendo Preços de Imóveis (0,20pt)
+Prevendo Preços de Imóveis (0,10pt)
 Sua missão é: Treinar um modelo de Machine Learning com os dados de treino.
 As variáveis abaixo já existem e estão prontas para serem usadas:
 X_treino_final: As características (tamanho, quartos, cidade) dos imóveis de treino, já limpas e transformadas.
@@ -8,7 +8,7 @@ y_teste: Os preços reais dos imóveis de teste. Usaremos isso no final para com
 
 Instruções:
 Analise o código e as dicas.
-Preencha as 4 linhas que contêm # SEU CÓDIGO AQUI.
+Preencha as linhas que contêm # SEU CÓDIGO AQUI.
 
 Seu Desafio: Complete o Código Abaixo
 Copie este bloco de código e preencha as seções marcadas com # SEU CÓDIGO AQUI. Use as dicas para te guiar.
@@ -51,7 +51,7 @@ X_treino_final = np.hstack([X_treino_num, X_treino_cat])
 X_teste_final = np.hstack([X_teste_num, X_teste_cat])
 # --- Fim do Bloco de Contexto ---
 
-# --- INÍCIO DO SEU TRABALHO ---
+# --- INÍCIO DO TRABALHO ---
 
 # 1. Crie uma instância do modelo de Regressão Linear
 # Dica: Assim como fizemos na primeira aula.
@@ -139,7 +139,7 @@ df_carros.info()
 print("\nValores ausentes:")
 print(df_carros.isnull().sum())
 
-# --- INÍCIO DO TRABALHO DO ALUNO ---
+# --- INÍCIO DO TRABALHO ---
 
 # --- 3. PREPARAÇÃO DOS DADOS ---
 
@@ -219,12 +219,12 @@ plt.show()
 
 
 
-Exercício 2: Classificação - Detecção de Churn de Clientes (0,20 pontos)
+Exercício 2: Classificação - Detecção de Churn de Clientes (0,10 pontos)
 Cenário: Você trabalha para uma empresa de telecomunicações. A diretoria está preocupada com a perda de clientes (o chamado "churn"). Sua missão é construir um modelo que preveja se um cliente está prestes a cancelar seu plano, com base em seu perfil e uso do serviço.
 Tipo: Classificação, pois o alvo (Churn) é uma categoria binária (Sim ou Nao).
 Desafio: Complete o esqueleto de código abaixo para treinar e avaliar um modelo de detecção de churn.
 
-# --- EXERCÍCIO  DE CLASSIFICAÇÃO ---
+# --- EXERCÍCIO  DE CLASSIFICAÇÃO --- (VALOR 0,10)
 # Objetivo: Prever se um cliente irá cancelar o serviço (Churn).
 
 # --- 1. SETUP INICIAL ---
