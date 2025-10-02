@@ -1,6 +1,6 @@
 AULA PRÉ-PROCESSAMENTO DE DADO
 
-Os dados que encontramos no mundo real raramente são perfeitos. Eles podem ser "sujos", ou seja, podem conter:
+Os dados que no mundo real raramente são perfeitos. Eles podem ser "sujos", ou seja, podem conter:
  - Valores Ausentes: Campos não preenchidos (ex: um cliente sem idade registrada).
  - Dados Inconsistentes: Erros de digitação ou formatos diferentes (ex: "São Paulo", "SP", "S. Paulo").
  - Outliers: Valores extremos que fogem muito do padrão (ex: uma casa de 20m² custando R$ 5 milhões).
@@ -20,9 +20,11 @@ As etapas mais comuns são:
    - Normalização/Padronização: Colocar todas as variáveis numéricas na mesma escala.
    - Encoding de Variáveis Categóricas: Converter textos em números, pois os modelos matemáticos não entendem palavras.
 
-3- Divisão dos Dados (Treino/Teste): Separar nosso conjunto de dados em duas partes: uma para treinar o modelo (geralmente 80%) e outra para testá-lo (20%), para avaliar se ele consegue generalizar para dados que nunca viu.
+3- Divisão dos Dados (Treino/Teste):
+Separar nosso conjunto de dados em duas partes: uma para treinar o modelo (geralmente 80%) e outra para testá-lo (20%), para avaliar se ele consegue generalizar para dados que nunca viu.
 
-Exemplo Prático: Usaremos a biblioteca Pandas para manipulação de dados e Scikit-learn para o pré-processamento.
+
+Usaremos a biblioteca Pandas para manipulação de dados e Scikit-learn para o pré-processamento.
 
 # Importando as bibliotecas
 import pandas as pd
