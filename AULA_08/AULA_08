@@ -1,6 +1,8 @@
 AULA PRÉ-PROCESSAMENTO DE DADO
 
-Os dados que no mundo real raramente são perfeitos. Eles podem ser "sujos", ou seja, podem conter:
+Dados raramente são perfeitos!
+
+Eles podem ser "sujos", ou seja, podem conter:
  - Valores Ausentes: Campos não preenchidos (ex: um cliente sem idade registrada).
  - Dados Inconsistentes: Erros de digitação ou formatos diferentes (ex: "São Paulo", "SP", "S. Paulo").
  - Outliers: Valores extremos que fogem muito do padrão (ex: uma casa de 20m² custando R$ 5 milhões).
@@ -8,21 +10,22 @@ Os dados que no mundo real raramente são perfeitos. Eles podem ser "sujos", ou 
 
 Os algoritmos de Machine Learning são sensíveis a esses problemas.
 
-Pré-processamento de Dados é o conjunto de técnicas aplicadas aos dados brutos para limpá-los, transformá-los e organizá-los em um formato adequado para o treinamento de modelos.
+PRÉ-PROCESSAMENTO DE DADOS é o conjunto de técnicas aplicadas aos dados brutos para limpá-los, transformá-los e organizá-los em um formato adequado para o treinamento de modelos.
 
 O objetivo é melhorar a qualidade dos dados e a performance e a precisão do modelo.
 
 As etapas mais comuns são:
 
-1 - Limpeza de Dados: Tratar valores ausentes (removendo ou preenchendo), corrigir inconsistências e remover duplicatas.
+1 - LIMPEZA DE DADOS: Tratar valores ausentes (removendo ou preenchendo), corrigir inconsistências e remover duplicatas.
 
-2 -Transformação de Dados:
+2 -TRANSFORMAÇÃO DE DADOS:
    - Normalização/Padronização: Colocar todas as variáveis numéricas na mesma escala.
    - Encoding de Variáveis Categóricas: Converter textos em números, pois os modelos matemáticos não entendem palavras.
 
-3- Divisão dos Dados (Treino/Teste): Separar nosso conjunto de dados em duas partes: uma para treinar o modelo (geralmente 80%) e outra para testá-lo (20%), para avaliar se ele consegue generalizar para dados que nunca viu.
+3- DIVISÃO DE DADOS (Treino/Teste):
+   - Separar o conjunto de dados em duas partes: treinar o modelo (geralmente 80%) e testá-lo (20%), para avaliar se ele consegue generalizar para dados que nunca viu.
 
-Exemplo Prático: Usaremos a biblioteca Pandas para manipulação de dados e Scikit-learn para o pré-processamento.
+Como exemplou, usaremos a biblioteca PANDAS para manipulação de dados e SCIKIT-LEARN para o pré-processamento.
 
 # Importando as bibliotecas
 import pandas as pd
@@ -32,7 +35,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 
 # 1. Dados Brutos ("sujos")
-# Criamos um DataFrame com Pandas
+# Criar DataFrame com Pandas
 dados = {
     'tamanho_m2': [50, 70, 100, 120, 65, np.nan, 95],
     'n_quartos': [1, 2, 3, 3, 2, 2, 3],
@@ -45,7 +48,7 @@ print(df)
 print("\nValores ausentes antes do tratamento:")
 print(df.isnull().sum())
 
-# 2. Limpeza: Tratando Valores Ausentes
+# 2. Limpeza: Tratar Valores Ausentes
 # Usaremos uma estratégia simples: preencher o valor ausente do tamanho com a média dos outros tamanhos.
 # 'SimpleImputer' é a ferramenta do scikit-learn para isso.
 imputer = SimpleImputer(strategy='mean')
@@ -90,19 +93,21 @@ print("\nOs dados estão limpos, transformados e prontos para o modelo!")
 
 
 
-Modelos Clássicos (Regressão vs. Classificação)
+Modelos Clássicos: Regressão vs. Classificação
 1. Definição Teórica
 Em Aprendizado Supervisionado, os dois tipos de problemas mais comuns são Regressão e Classificação.
 
-Regressão:Usamos modelos de regressão quando queremos prever um valor numérico contínuo.
+REGRESSÃO:Usamos quando queremos prever um valor numérico contínuo.
 Exemplos de perguntas que a regressão responde:
  - Qual será o preço de uma casa? (Como no nosso exemplo)
  - Qual será a temperatura amanhã?
  - Quantos produtos serão vendidos no próximo mês?
  - Qual a duração de uma viagem de carro?
+
 Algoritmos Comuns: Regressão Linear, Regressão Polinomial, Árvores de Decisão, Random Forest, Gradient Boosting.
 
-Classificação: Usamos modelos de classificação quando queremos prever uma categoria ou classe discreta.
+
+CLASSIFICAÇÃO: Usamos quando queremos prever uma categoria ou classe discreta.
 Exemplos de perguntas que a classificação responde:
  - Este e-mail é spam ou não spam? (2 classes)
  - Esta foto contém um gato, um cachorro ou um pássaro? (Múltiplas classes)
@@ -111,12 +116,12 @@ Exemplos de perguntas que a classificação responde:
 
 Algoritmos Comuns: Regressão Logística, KNN, SVM, Árvores de Decisão (para classificação), Naive Bayes.
 
-A grande diferença:
+A GRANDE DIFERENÇA:
  - Se a resposta que você procura é um número em uma escala (preço, idade, quantidade), o problema é de Regressão.
  - Se a resposta é uma etiqueta, um rótulo ou um grupo (sim/não, gato/cachorro, azul/verde/vermelho), o problema é de Classificação.
 
-# --- Exemplo Didático de REGRESSÃO ---
 
+# --- Exemplo de REGRESSÃO ---
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
@@ -144,12 +149,14 @@ print(f"Previsão para 7 horas de estudo: Nota {nota_prevista[0]:.1f}")
 # 4. Visualizar o Resultado
 plt.figure(figsize=(10, 6))
 # Plota os dados originais (pontos azuis)
+
 plt.scatter(horas_estudo, nota_exame, color='blue', label='Dados Alunos')
 # Plota a linha que o modelo aprendeu (linha vermelha)
+
 plt.plot(horas_estudo, modelo_regressao.predict(horas_estudo), color='red', label='Linha de Regressão (Aprendizado do Modelo)')
 # Plota a nova previsão (ponto verde)
-plt.scatter(horas_novas, nota_prevista, color='green', s=150, zorder=5, label=f'Previsão para {horas_novas[0][0]}h')
 
+plt.scatter(horas_novas, nota_prevista, color='green', s=150, zorder=5, label=f'Previsão para {horas_novas[0][0]}h')
 plt.title('Regressão: Horas de Estudo vs. Nota do Exame')
 plt.xlabel('Horas de Estudo')
 plt.ylabel('Nota no Exame (0 a 10)')
@@ -158,8 +165,7 @@ plt.grid(True)
 plt.show()
 
 
-# --- Exemplo Didático de CLASSIFICAÇÃO ---
-
+# Exemplo de CLASSIFICAÇÃO
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
@@ -167,6 +173,7 @@ from sklearn.linear_model import LogisticRegression
 # 1. Dados: Horas de Estudo e Faltas vs. Situação Final
 # Features: [Horas de Estudo, Número de Faltas]
 # Alvo: 0 para Reprovado, 1 para Aprovado
+
 X_alunos = np.array([
     [2, 8], [4, 5], [5, 2], [6, 4], [7, 1], [8, 0],
     [9, 3], [10, 1], [11, 0], [12, 2]
