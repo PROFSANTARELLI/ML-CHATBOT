@@ -1,16 +1,22 @@
-Prevendo Preços de Imóveis (0,10pt)
+MISSÃO 7: Exercício de Pré-processamento, Regressão e Classificação
+ENTREGÁVEIS: (inserir no cartão da missão de hoje)
+ - Construção do código e entrega de códido funcionando e saída de cada um dos 3 exercícios
+ - Elaboração da explicação técnica de cada um deles
+ - Colocar o nome dos presentes e validar com o professor antes de sair.
+
+
+EXERCÍCIO 1: Prevendo Preços de Imóveis (0,10pt)
 Sua missão é: Treinar um modelo de Machine Learning com os dados de treino.
 As variáveis abaixo já existem e estão prontas para serem usadas:
-X_treino_final: As características (tamanho, quartos, cidade) dos imóveis de treino, já limpas e transformadas.
-y_treino: Os preços reais dos imóveis de treino.
-X_teste_final: As características dos imóveis de teste, que o modelo nunca viu.
-y_teste: Os preços reais dos imóveis de teste. Usaremos isso no final para comparar com as previsões do nosso modelo.
+ - X_treino_final: As características (tamanho, quartos, cidade) dos imóveis de treino, já limpas e transformadas.
+ - y_treino: Os preços reais dos imóveis de treino.
+ - X_teste_final: As características dos imóveis de teste, que o modelo nunca viu.
+ - y_teste: Os preços reais dos imóveis de teste. Usaremos isso no final para comparar com as previsões do nosso modelo.
 
-Instruções:
+INSTRUÇÕES
 Analise o código e as dicas.
-Preencha as linhas que contêm # SEU CÓDIGO AQUI.
 
-Seu Desafio: Complete o Código Abaixo
+Desafio: Complete o Código Abaixo
 Copie este bloco de código e preencha as seções marcadas com # SEU CÓDIGO AQUI. Use as dicas para te guiar.
 
 # --- Bloco de Código do Exercício ---
@@ -19,7 +25,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, r2_score
 
 # Suponha que estas variáveis já existem e foram geradas pelo código anterior
-# (Para que este código rode de forma independente, vamos recriá-las aqui rapidamente)
 # --- Início do Bloco de Contexto (não precisa alterar) ---
 import pandas as pd
 import numpy as np
@@ -49,23 +54,18 @@ X_treino_num = scaler.fit_transform(X_treino[colunas_numericas])
 X_teste_num = scaler.transform(X_teste[colunas_numericas])
 X_treino_final = np.hstack([X_treino_num, X_treino_cat])
 X_teste_final = np.hstack([X_teste_num, X_teste_cat])
-# --- Fim do Bloco de Contexto ---
 
-# --- INÍCIO DO TRABALHO ---
-
+# --- INÍCIO DO SEU TRABALHO
 # 1. Crie uma instância do modelo de Regressão Linear
-# Dica: Assim como fizemos na primeira aula.
+
 modelo_preco_casas = # SEU CÓDIGO AQUI
 
-
-# 2. Treine o modelo com os dados de TREINO
-# Dica: Use o método .fit() com os dados de treino (X_treino_final e y_treino).
+# 2. Treine o modelo com os dados de TREINO. Use o método .fit() com os dados de treino (X_treino_final e y_treino).
 # SEU CÓDIGO AQUI
 
 print("Modelo treinado com sucesso!")
 
-# 3. Faça previsões nos dados de TESTE
-# Dica: Use o método .predict() no conjunto de teste (X_teste_final).
+# 3. Faça previsões nos dados de TESTE. Use o método .predict() no conjunto de teste (X_teste_final).
 previsoes = # SEU CÓDIGO AQUI
 
 print("\n--- Resultados da Avaliação ---")
@@ -84,28 +84,19 @@ r2 = # SEU CÓDIGO AQUI
 
 print(f"\nErro Absoluto Médio (MAE): R$ {mae:.2f}")
 print(f"Score R²: {r2:.2f}")
-
 # --- FIM DO SEU TRABALHO ---
 
-Regressão - Prevendo a Nota do Exame
-O Problema: Queremos prever a nota final que um aluno irá tirar em um exame, com base no número de horas que ele estudou.
-Tipo: Regressão, porque a "nota" é um valor numérico contínuo (pode ser 7.5, 8.2, 9.0, etc.).
-Algoritmo: Usaremos a LinearRegression, que tentará traçar a "melhor reta" que descreve a relação entre as horas de estudo e a nota.
 
 
-
-
-# --- REGRESSÃO ---
-
-Exercício 1: Regressão - Previsão de Preço de Carros Usados (0,20pt)
+EXERCÍCIO 2: Regressão - Previsão de Preço de Carros Usados (0,10pt)
 Cenário: Sua tarefa é criar um modelo que estime o preço de venda de um carro usado com base em suas características, para ajudar os vendedores a precificarem seus anúncios de forma justa.
 Tipo: Regressão, pois o alvo (Preco) é um valor numérico contínuo.
 Desafio: Complete o esqueleto de código abaixo para treinar e avaliar um modelo de previsão de preços.
 
-# --- EXERCÍCIO PRÁTICO DE REGRESSÃO ---
+# --- EXERCÍCIO DE REGRESSÃO ---
 # Objetivo: Prever o preço de carros usados.
-
 # --- 1. SETUP INICIAL ---
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -140,11 +131,10 @@ print("\nValores ausentes:")
 print(df_carros.isnull().sum())
 
 # --- INÍCIO DO TRABALHO ---
-
 # --- 3. PREPARAÇÃO DOS DADOS ---
-
 # 3.1. Separe as features (X) do alvo (y)
 # Dica: 'y' é a coluna 'Preco'. 'X' são todas as outras.
+
 X = # SEU CÓDIGO AQUI
 y = # SEU CÓDIGO AQUI
 
@@ -179,7 +169,6 @@ preprocessor = ColumnTransformer(
     ])
 
 # --- 4. TREINAMENTO DO MODELO ---
-
 # 4.1. Crie o modelo de Regressão Linear
 modelo_reg = # SEU CÓDIGO AQUI
 
@@ -195,9 +184,9 @@ pipeline_final_reg = Pipeline(steps=[('preprocessor', preprocessor),
 print("\n Modelo de Regressão treinado com sucesso!")
 
 # --- 5. AVALIAÇÃO DO MODELO ---
-
 # 5.1. Faça previsões com os dados de teste
 # Dica: Use o método .predict() no pipeline treinado com X_teste.
+
 previsoes_preco = # SEU CÓDIGO AQUI
 
 # 5.2. Calcule as métricas de avaliação
@@ -218,16 +207,15 @@ plt.title("Preços Reais vs. Previsões do Modelo de Regressão")
 plt.show()
 
 
-
-Exercício 2: Classificação - Detecção de Churn de Clientes (0,10 pontos)
+EXERCÍCIO 3: Classificação - Detecção de Churn de Clientes (0,10 pontos)
 Cenário: Você trabalha para uma empresa de telecomunicações. A diretoria está preocupada com a perda de clientes (o chamado "churn"). Sua missão é construir um modelo que preveja se um cliente está prestes a cancelar seu plano, com base em seu perfil e uso do serviço.
 Tipo: Classificação, pois o alvo (Churn) é uma categoria binária (Sim ou Nao).
 Desafio: Complete o esqueleto de código abaixo para treinar e avaliar um modelo de detecção de churn.
 
-# --- EXERCÍCIO  DE CLASSIFICAÇÃO --- (VALOR 0,10)
+# --- EXERCÍCIO  DE CLASSIFICAÇÃO
 # Objetivo: Prever se um cliente irá cancelar o serviço (Churn).
-
 # --- 1. SETUP INICIAL ---
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -240,7 +228,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# --- 2. DATASET (Grande e com desafios reais) ---
+# --- 2. DATASET ---
 # Dataset simulado de clientes de telecom
 data = {
     'Idade': [25, 45, 35, 50, 22, 55, 41, 28, 33, 60, 39, 48, 29, 52, 31, 65, 27, 38, 43, 58],
@@ -261,17 +249,19 @@ print("\nValores ausentes:")
 print(df_churn.isnull().sum())
 
 # --- 3. PREPARAÇÃO DOS DADOS ---
-
 # 3.1. Separe as features (X) do alvo (y)
 # Dica: 'y' é a coluna 'Churn'. 'X' são todas as outras.
+
 X = # SEU CÓDIGO AQUI
 y = # SEU CÓDIGO AQUI
 
 # 3.2. Divida os dados em conjuntos de treino e teste
 # Dica: Use 25% para teste e random_state=42.
+
 X_treino, X_teste, y_treino, y_teste = # SEU CÓDIGO AQUI
 
 # 3.3. Crie um pipeline de pré-processamento (similar ao de regressão)
+
 colunas_numericas = ['Idade', 'Plano_Mensal', 'Meses_Contrato']
 colunas_categoricas = ['Tipo_Contrato', 'Suporte_Tecnico']
 
@@ -290,11 +280,12 @@ preprocessor = ColumnTransformer(
     ])
 
 # --- 4. TREINAMENTO DO MODELO ---
-
 # 4.1. Crie o modelo de Regressão Logística (para classificação)
+
 modelo_cla = # SEU CÓDIGO AQUI
 
 # 4.2. Crie o pipeline final que une o pré-processador e o modelo
+
 pipeline_final_cla = Pipeline(steps=[('preprocessor', preprocessor),
                                      ('classifier', modelo_cla)])
 
@@ -304,7 +295,6 @@ pipeline_final_cla = Pipeline(steps=[('preprocessor', preprocessor),
 print("\n Modelo de Classificação treinado com sucesso!")
 
 # --- 5. AVALIAÇÃO DO MODELO ---
-
 # 5.1. Faça previsões com os dados de teste
 previsoes_churn = # SEU CÓDIGO AQUI
 
