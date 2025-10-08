@@ -11,7 +11,8 @@ Eles podem ser "sujos", ou seja, podem conter:
 
 Os algoritmos de Machine Learning são sensíveis a esses problemas.
 
-PRÉ-PROCESSAMENTO DE DADOS é o conjunto de técnicas aplicadas aos dados brutos para limpá-los, transformá-los e organizá-los em um formato adequado para o treinamento de modelos.
+PRÉ-PROCESSAMENTO DE DADOS é o conjunto de técnicas aplicadas aos dados brutos para limpá-los, transformá-los e organizá-los em
+um formato adequado para o treinamento de modelos.
 
 O objetivo é melhorar a qualidade dos dados e a performance e a precisão do modelo.
 
@@ -24,7 +25,8 @@ As etapas mais comuns são:
    - Encoding de Variáveis Categóricas: Converter textos em números, pois os modelos matemáticos não entendem palavras.
 
 3- DIVISÃO DE DADOS (Treino/Teste):
-   - Separar o conjunto de dados em duas partes: treinar o modelo (geralmente 80%) e testá-lo (20%), para avaliar se ele consegue generalizar para dados que nunca viu.
+   - Separar o conjunto de dados em duas partes: treinar o modelo (geralmente 80%) e testá-lo (20%), para avaliar se ele consegue
+generalizar para dados que nunca viu.
 
 Como exemplou, usaremos a biblioteca PANDAS para manipulação de dados e SCIKIT-LEARN para o pré-processamento.
 
