@@ -1,319 +1,142 @@
-MISSÃO 5: Exercício de Pré-processamento, Regressão e Classificação
-
-ENTREGÁVEIS: (inserir no cartão da missão de hoje)
- - Construção do código e entrega de códido funcionando e saída de cada um dos 3 exercícios
- - Elaboração da explicação técnica de cada um deles
- - Colocar o nome dos presentes e validar com o professor antes de sair.
-
-
-EXERCÍCIO 1: Prevendo Preços de Imóveis (0,10pt)
-Sua missão é: Treinar um modelo de Machine Learning com os dados de treino.
-As variáveis abaixo já existem e estão prontas para serem usadas:
- - X_treino_final: As características (tamanho, quartos, cidade) dos imóveis de treino, já limpas e transformadas.
- - y_treino: Os preços reais dos imóveis de treino.
- - X_teste_final: As características dos imóveis de teste, que o modelo nunca viu.
- - y_teste: Os preços reais dos imóveis de teste. Usaremos isso no final para comparar com as previsões do nosso modelo.
-
-INSTRUÇÕES
-Analise o código e as dicas.
-
-Desafio: Complete o Código Abaixo
-Copie este bloco de código e preencha as seções marcadas com # SEU CÓDIGO AQUI. Use as dicas para te guiar.
-
-# --- Bloco de Código do Exercício ---
-# Importe as bibliotecas necessárias para o modelo e para a avaliação
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, r2_score
-
-# Suponha que estas variáveis já existem e foram geradas pelo código anterior
-# --- Início do Bloco de Contexto (não precisa alterar) ---
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.impute import SimpleImputer
-
-dados = {
-    'tamanho_m2': [50, 70, 100, 120, 65, np.nan, 95, 88, 110, 150],
-    'n_quartos': [1, 2, 3, 3, 2, 2, 3, 2, 3, 4],
-    'cidade': ['SP', 'RJ', 'SP', 'BH', 'RJ', 'SP', 'BH', 'RJ', 'SP', 'BH'],
-    'preco': [150000, 210000, 300000, 350000, 190000, 180000, 280000, 250000, 320000, 450000]
-}
-df = pd.DataFrame(dados)
-imputer = SimpleImputer(strategy='mean')
-df['tamanho_m2'] = imputer.fit_transform(df[['tamanho_m2']])
-X = df.drop('preco', axis=1)
-y = df['preco']
-X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.3, random_state=42)
-colunas_numericas = ['tamanho_m2', 'n_quartos']
-colunas_categoricas = ['cidade']
-encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
-X_treino_cat = encoder.fit_transform(X_treino[colunas_categoricas])
-X_teste_cat = encoder.transform(X_teste[colunas_categoricas])
-scaler = StandardScaler()
-X_treino_num = scaler.fit_transform(X_treino[colunas_numericas])
-X_teste_num = scaler.transform(X_teste[colunas_numericas])
-X_treino_final = np.hstack([X_treino_num, X_treino_cat])
-X_teste_final = np.hstack([X_teste_num, X_teste_cat])
-
-# --- INÍCIO DO SEU TRABALHO
-# 1. Crie uma instância do modelo de Regressão Linear
-
-modelo_preco_casas = # SEU CÓDIGO AQUI
-
-# 2. Treine o modelo com os dados de TREINO. Use o método .fit() com os dados de treino (X_treino_final e y_treino).
-# SEU CÓDIGO AQUI
-
-print("Modelo treinado com sucesso!")
-
-# 3. Faça previsões nos dados de TESTE. Use o método .predict() no conjunto de teste (X_teste_final).
-previsoes = # SEU CÓDIGO AQUI
-
-print("\n--- Resultados da Avaliação ---")
-# Vamos comparar as previsões com os valores reais (y_teste)
-for i in range(len(previsoes)):
-    print(f"Imóvel {i+1}: Preço Real = R${y_teste.iloc[i]:.2f} | Previsão do Modelo = R${previsoes[i]:.2f}")
-
-# 4. Avalie a performance do modelo
-# Usaremos duas métricas:
-# - Erro Absoluto Médio (MAE): A média da diferença (em R$) entre o preço real e a previsão. Quanto menor, melhor.
-# - R² Score: Indica o quão bem o modelo explica a variação dos dados. Varia de 0 a 1. Quanto mais perto de 1, melhor.
-
-# Dica: Use as funções mean_absolute_error() e r2_score(). Elas recebem (y_teste, previsoes) como argumentos.
-mae = # SEU CÓDIGO AQUI
-r2 = # SEU CÓDIGO AQUI
-
-print(f"\nErro Absoluto Médio (MAE): R$ {mae:.2f}")
-print(f"Score R²: {r2:.2f}")
-# --- FIM DO SEU TRABALHO ---
-
-
-
-EXERCÍCIO 2: Regressão - Previsão de Preço de Carros Usados (0,10pt)
-Cenário: Sua tarefa é criar um modelo que estime o preço de venda de um carro usado com base em suas características, para ajudar os vendedores a precificarem seus anúncios de forma justa.
-Tipo: Regressão, pois o alvo (Preco) é um valor numérico contínuo.
-Desafio: Complete o esqueleto de código abaixo para treinar e avaliar um modelo de previsão de preços.
-
-# --- EXERCÍCIO DE REGRESSÃO ---
-# Objetivo: Prever o preço de carros usados.
-# --- 1. SETUP INICIAL ---
-
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, r2_score
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# --- 2. DATASET (Grande e com desafios reais) ---
-# Dataset simulado de carros usados
-data = {
-    'Ano': [2018, 2015, 2019, 2020, 2017, 2014, 2018, 2016, 2021, 2013, 2019, 2017, 2015, 2020, 2018, 2016, 2022, 2014, 2019, 2017],
-    'Quilometragem': [50000, 120000, 30000, 15000, 70000, 150000, 60000, 95000, 5000, 180000, 40000, 80000, 110000, 20000, 55000, 105000, 2000, 160000, 35000, 75000],
-    'Potencia_Motor': [1.6, 2.0, 1.0, 1.4, 1.8, 2.0, 1.6, 1.8, 1.0, 2.2, 1.4, 1.6, 2.0, 1.0, 1.8, 2.0, 1.2, 2.2, 1.4, 1.8],
-    'Tipo_Combustivel': ['Flex', 'Gasolina', 'Flex', 'Flex', 'Gasolina', 'Diesel', 'Flex', 'Gasolina', 'Flex', 'Diesel', 'Flex', 'Flex', 'Gasolina', 'Flex', 'Gasolina', 'Diesel', 'Flex', 'Diesel', 'Flex', 'Gasolina'],
-    'Cambio': ['Manual', 'Automatico', 'Manual', 'Manual', 'Automatico', 'Manual', 'Automatico', 'Automatico', 'Manual', 'Automatico', 'Manual', 'Manual', 'Automatico', 'Manual', 'Automatico', 'Automatico', 'Manual', 'Automatico', 'Manual', 'Automatico'],
-    'Preco': [45000, 38000, 55000, 65000, 52000, 35000, 48000, 46000, 75000, 32000, 58000, 50000, 40000, 68000, 53000, 44000, 82000, 30000, 60000, 51000]
-}
-df_carros = pd.DataFrame(data)
-
-# Adicionando valores ausentes para o desafio
-df_carros.loc[5, 'Quilometragem'] = np.nan
-df_carros.loc[11, 'Potencia_Motor'] = np.nan
-
-print("--- Análise Inicial: Dataset de Carros ---")
-df_carros.info()
-print("\nValores ausentes:")
-print(df_carros.isnull().sum())
-
-# --- INÍCIO DO TRABALHO ---
-# --- 3. PREPARAÇÃO DOS DADOS ---
-# 3.1. Separe as features (X) do alvo (y)
-# Dica: 'y' é a coluna 'Preco'. 'X' são todas as outras.
-
-X = # SEU CÓDIGO AQUI
-y = # SEU CÓDIGO AQUI
-
-# 3.2. Divida os dados em conjuntos de treino e teste
-# Dica: Use 20% para teste e random_state=42 para consistência.
-X_treino, X_teste, y_treino, y_teste = # SEU CÓDIGO AQUI
-
-# 3.3. Crie um pipeline de pré-processamento
-# Dica: Use ColumnTransformer para aplicar transformações diferentes em colunas diferentes.
-# Para colunas numéricas: um SimpleImputer (para preencher NaN) e um StandardScaler.
-# Para colunas categóricas: um OneHotEncoder.
-
-colunas_numericas = ['Ano', 'Quilometragem', 'Potencia_Motor']
-colunas_categoricas = ['Tipo_Combustivel', 'Cambio']
-
-# Pipeline para dados numéricos
-pipeline_numerico = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median')),
-    ('scaler', StandardScaler())
-])
-
-# Pipeline para dados categóricos
-pipeline_categorico = Pipeline(steps=[
-    ('onehot', OneHotEncoder(handle_unknown='ignore'))
-])
-
-# Junte os pipelines em um ColumnTransformer
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', pipeline_numerico, colunas_numericas),
-        ('cat', pipeline_categorico, colunas_categoricas)
-    ])
-
-# --- 4. TREINAMENTO DO MODELO ---
-# 4.1. Crie o modelo de Regressão Linear
-modelo_reg = # SEU CÓDIGO AQUI
-
-# 4.2. Crie o pipeline final que une o pré-processador e o modelo
-# Dica: Este pipeline fará todo o trabalho: pré-processar e depois treinar.
-pipeline_final_reg = Pipeline(steps=[('preprocessor', preprocessor),
-                                     ('regressor', modelo_reg)])
-
-# 4.3. Treine o pipeline completo com os dados de treino
-# Dica: Use o método .fit() no pipeline final com X_treino e y_treino.
-# SEU CÓDIGO AQUI
-
-print("\n Modelo de Regressão treinado com sucesso!")
-
-# --- 5. AVALIAÇÃO DO MODELO ---
-# 5.1. Faça previsões com os dados de teste
-# Dica: Use o método .predict() no pipeline treinado com X_teste.
-
-previsoes_preco = # SEU CÓDIGO AQUI
-
-# 5.2. Calcule as métricas de avaliação
-mae = # SEU CÓDIGO AQUI (use mean_absolute_error)
-r2 = # SEU CÓDIGO AQUI (use r2_score)
-
-print("\n--- Resultados da Avaliação (Regressão) ---")
-print(f"Erro Absoluto Médio (MAE): R$ {mae:.2f}")
-print(f"Score R²: {r2:.2f}")
-
-# 5.3. Visualize os resultados
-plt.figure(figsize=(10, 6))
-plt.scatter(y_teste, previsoes_preco)
-plt.plot([y_teste.min(), y_teste.max()], [y_teste.min(), y_teste.max()], '--r', linewidth=2)
-plt.xlabel("Preços Reais")
-plt.ylabel("Preços Previstos")
-plt.title("Preços Reais vs. Previsões do Modelo de Regressão")
-plt.show()
-
-
-EXERCÍCIO 3: Classificação - Detecção de Churn de Clientes (0,10 pontos)
-Cenário: Você trabalha para uma empresa de telecomunicações. A diretoria está preocupada com a perda de clientes (o chamado "churn"). Sua missão é construir um modelo que preveja se um cliente está prestes a cancelar seu plano, com base em seu perfil e uso do serviço.
-Tipo: Classificação, pois o alvo (Churn) é uma categoria binária (Sim ou Nao).
-Desafio: Complete o esqueleto de código abaixo para treinar e avaliar um modelo de detecção de churn.
-
-# --- EXERCÍCIO  DE CLASSIFICAÇÃO
-# Objetivo: Prever se um cliente irá cancelar o serviço (Churn).
-# --- 1. SETUP INICIAL ---
-
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-# --- 2. DATASET ---
-# Dataset simulado de clientes de telecom
-data = {
-    'Idade': [25, 45, 35, 50, 22, 55, 41, 28, 33, 60, 39, 48, 29, 52, 31, 65, 27, 38, 43, 58],
-    'Plano_Mensal': [70, 95, 80, 105, 50, 110, 90, 65, 75, 115, 85, 100, 72, 108, 78, 120, 68, 82, 92, 112],
-    'Meses_Contrato': [1, 24, 12, 36, 2, 48, 18, 5, 8, 60, 15, 30, 3, 40, 6, 55, 4, 10, 22, 50],
-    'Tipo_Contrato': ['Mensal', 'Anual', 'Mensal', 'Dois anos', 'Mensal', 'Dois anos', 'Anual', 'Mensal', 'Mensal', 'Dois anos', 'Anual', 'Dois anos', 'Mensal', 'Dois anos', 'Mensal', 'Dois anos', 'Mensal', 'Anual', 'Anual', 'Dois anos'],
-    'Suporte_Tecnico': ['Sim', 'Nao', 'Sim', 'Nao', 'Nao', 'Nao', 'Sim', 'Sim', 'Nao', 'Nao', 'Sim', 'Nao', 'Sim', 'Nao', 'Sim', 'Nao', 'Sim', 'Sim', 'Nao', 'Nao'],
-    'Churn': ['Sim', 'Nao', 'Sim', 'Nao', 'Sim', 'Nao', 'Nao', 'Sim', 'Sim', 'Nao', 'Nao', 'Nao', 'Sim', 'Nao', 'Sim', 'Nao', 'Sim', 'Nao', 'Nao', 'Nao']
-}
-df_churn = pd.DataFrame(data)
-
-# Adicionando valores ausentes
-df_churn.loc[3, 'Plano_Mensal'] = np.nan
-
-print("--- Análise Inicial: Dataset de Churn ---")
-df_churn.info()
-print("\nValores ausentes:")
-print(df_churn.isnull().sum())
-
-# --- 3. PREPARAÇÃO DOS DADOS ---
-# 3.1. Separe as features (X) do alvo (y)
-# Dica: 'y' é a coluna 'Churn'. 'X' são todas as outras.
-
-X = # SEU CÓDIGO AQUI
-y = # SEU CÓDIGO AQUI
-
-# 3.2. Divida os dados em conjuntos de treino e teste
-# Dica: Use 25% para teste e random_state=42.
-
-X_treino, X_teste, y_treino, y_teste = # SEU CÓDIGO AQUI
-
-# 3.3. Crie um pipeline de pré-processamento (similar ao de regressão)
-
-colunas_numericas = ['Idade', 'Plano_Mensal', 'Meses_Contrato']
-colunas_categoricas = ['Tipo_Contrato', 'Suporte_Tecnico']
-
-pipeline_numerico = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='mean')),
-    ('scaler', StandardScaler())
-])
-pipeline_categorico = Pipeline(steps=[
-    ('onehot', OneHotEncoder(handle_unknown='ignore'))
-])
-
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', pipeline_numerico, colunas_numericas),
-        ('cat', pipeline_categorico, colunas_categoricas)
-    ])
-
-# --- 4. TREINAMENTO DO MODELO ---
-# 4.1. Crie o modelo de Regressão Logística (para classificação)
-
-modelo_cla = # SEU CÓDIGO AQUI
-
-# 4.2. Crie o pipeline final que une o pré-processador e o modelo
-
-pipeline_final_cla = Pipeline(steps=[('preprocessor', preprocessor),
-                                     ('classifier', modelo_cla)])
-
-# 4.3. Treine o pipeline completo com os dados de treino
-# SEU CÓDIGO AQUI
-
-print("\n Modelo de Classificação treinado com sucesso!")
-
-# --- 5. AVALIAÇÃO DO MODELO ---
-# 5.1. Faça previsões com os dados de teste
-previsoes_churn = # SEU CÓDIGO AQUI
-
-# 5.2. Calcule as métricas de avaliação
-# Dica: Para classificação, acurácia, matriz de confusão e relatório de classificação são ótimos.
-acuracia = # SEU CÓDIGO AQUI (use accuracy_score)
-relatorio = classification_report(y_teste, previsoes_churn)
-matriz_conf = confusion_matrix(y_teste, previsoes_churn)
-
-print("\n--- Resultados da Avaliação (Classificação) ---")
-print(f"Acurácia: {acuracia*100:.2f}%")
-print("\nRelatório de Classificação:")
-print(relatorio)
-
-# 5.3. Visualize a Matriz de Confusão
-plt.figure(figsize=(8, 6))
-sns.heatmap(matriz_conf, annot=True, fmt='d', cmap='Blues', xticklabels=['Nao Churn', 'Churn'], yticklabels=['Nao Churn', 'Churn'])
-plt.xlabel('Previsto')
-plt.ylabel('Real')
-plt.title('Matriz de Confusão')
-plt.show()
+ATIVIDADE 09/01/2025
+
+MISSÃO AC
+
+Projeto 1: Classificação de Risco de Crédito (0,10 PONTO)
+Cenário de Negócio: Você foi contratado por uma fintech para desenvolver um sistema automatizado de análise de crédito. O objetivo é minimizar o risco de perdas financeiras, identificando clientes com alta probabilidade de não pagarem um empréstimo.
+Sua tarefa é construir um modelo de Machine Learning que classifique os pedidos de empréstimo em "Baixo Risco" ou "Alto Risco".
+
+Seu Objetivo: Construir um pipeline de classificação que receba os dados de um cliente e preveja sua categoria de risco.
+
+Dicas para a Construção:
+Dataset:
+Crie um DataFrame com o Pandas.
+Features Numéricas: idade (ex: 25 a 65), salario_anual (ex: 30000 a 200000), anos_empregado (ex: 0 a 30), valor_emprestimo (ex: 5000 a 100000).
+Features Categóricas: tipo_moradia (com valores como 'Aluguel', 'Propria', 'Financiada').
+Alvo (Target): risco_inadimplencia (use 0 para Baixo Risco e 1 para Alto Risco).
+Desafio Extra: Use np.nan para introduzir alguns valores ausentes na coluna salario_anual para simular dados do mundo real.
+
+Bibliotecas Essenciais:
+pandas e numpy para manipulação de dados.
+train_test_split do sklearn.model_selection.
+Pipeline do sklearn.pipeline.
+SimpleImputer, StandardScaler, OneHotEncoder do sklearn.preprocessing.
+ColumnTransformer do sklearn.compose.
+LogisticRegression do sklearn.linear_model (um bom ponto de partida para classificação).
+accuracy_score, classification_report, roc_auc_score do sklearn.metrics.
+
+Estrutura do Projeto:
+Preparação: Separe seus dados em X (features) e y (alvo). Use train_test_split para criar os conjuntos de treino e teste (sugestão: 30% para teste).
+Pré-processamento: Defina um ColumnTransformer. Dentro dele, crie um pipeline para as colunas numéricas (com SimpleImputer e StandardScaler) e outro para as colunas categóricas (com OneHotEncoder).
+Modelagem: Crie um Pipeline final que una o ColumnTransformer e o modelo LogisticRegression.
+Treinamento: Use o método .fit() no seu pipeline final com os dados de treino.
+Avaliação: Use .predict() e .predict_proba() nos dados de teste. Calcule a acurácia, o classification_report e o roc_auc_score para entender a performance do seu modelo.
+
+
+Projeto 2: Previsão de Consumo de Energia (0,10 PONTO)
+Cenário de Negócio:
+Você é um cientista de dados em uma companhia de energia. Para otimizar a distribuição e evitar desperdícios, a empresa precisa prever o consumo diário de energia de grandes edifícios.
+Sua tarefa é criar um modelo que estime o consumo em kWh com base em dados de calendário e clima.
+
+Seu Objetivo:Construir um modelo de regressão que preveja um valor numérico de consumo de energia.
+
+Dicas para a Construção:
+Dataset: Crie um DataFrame com o Pandas.
+Features Iniciais: data (use pd.to_datetime para criar uma série de datas), temperatura_media (ex: 0 a 35), dia_util (use 1 para sim e 0 para não).
+Alvo (Target): consumo_energia_kwh (um valor numérico, ex: 1000 a 5000).
+Bibliotecas Essenciais:
+pandas e numpy.
+train_test_split.
+Pipeline.
+StandardScaler.
+RandomForestRegressor do sklearn.ensemble (um modelo robusto para esse tipo de problema).
+mean_absolute_error, r2_score do sklearn.metrics.
+Estrutura do Projeto:
+Engenharia de Atributos (Feature Engineering): Esta é a etapa chave! A partir da coluna data, crie novas features numéricas: mes, dia_da_semana, dia_do_ano. Use os acessadores .dt do Pandas (ex: df['data'].dt.month). Após criar essas novas colunas, remova a coluna data original.
+Preparação: Com as novas features criadas, separe X e y. Divida em treino e teste.
+Modelagem: Como todas as suas features agora são numéricas, seu pipeline pode ser mais simples. Crie um Pipeline que contenha um StandardScaler e o RandomForestRegressor.
+Treinamento: Treine o pipeline com os dados de treino.
+Avaliação: Faça previsões nos dados de teste e avalie seu modelo usando o Erro Absoluto Médio (MAE) e o R² Score. Interprete o que o MAE significa no contexto do problema (kWh).
+
+
+
+Projeto 3: Detecção de E-mails Spam (0,10 PONTO)
+Cenário de Negócio:
+Você está desenvolvendo um novo cliente de e-mail e quer oferecer um filtro de spam inteligente. Você tem um dataset de e-mails, onde cada um está rotulado como "spam" ou "ham" (não spam). O desafio é que os dados são texto puro.
+Seu Objetivo:
+Construir um pipeline de NLP (Processamento de Linguagem Natural) para classificar e-mails.
+Dicas para a Construção:
+Dataset:
+Crie um pequeno DataFrame com duas colunas: texto e categoria.
+Exemplos de texto: "oferta imperdível clique aqui agora", "ganhe dinheiro fácil", "relatório de vendas anexo", "oi, tudo bem? reunião amanhã".
+categoria: 'spam' ou 'ham'.
+Bibliotecas Essenciais:
+pandas.
+train_test_split.
+Pipeline.
+TfidfVectorizer do sklearn.feature_extraction.text. Esta é a ferramenta chave que converterá o texto em números que o modelo entende.
+MultinomialNB do sklearn.naive_bayes. Um algoritmo de classificação clássico e muito eficaz para problemas de texto.
+accuracy_score, classification_report.
+Estrutura do Projeto:
+Preparação: Crie o dataset, separe X (a coluna texto) e y (a coluna categoria), e divida em treino e teste.
+Modelagem de NLP: Este pipeline é diferente. Ele não usará StandardScaler. As etapas serão:
+TfidfVectorizer: Esta etapa transforma as frases em um vetor numérico baseado na frequência e relevância das palavras.
+MultinomialNB: O classificador que aprenderá com esses vetores.
+Crie um Pipeline com essas duas etapas.
+Treinamento: Treine o pipeline. O .fit() irá aplicar o vetorizador e depois treinar o classificador.
+Avaliação: Faça previsões. Analise o classification_report. Para um filtro de spam, qual é mais importante: alta precisão ou alto recall na classe 'spam'? 
+(Pense no custo de um e-mail importante ser classificado como spam vs. um spam passar pelo filtro).
+
+
+
+ETAPA DE SUPER DESAFIO: VALOR DE 0,30 DE BÔNUS NA AVALIAÇÃO SEMESTRAL
+
+Projeto 4: Classificação de Espécies de Flores Íris (0,15 PONTO)
+Cenário de Negócio:
+Você é um pesquisador botânico e coletou dados sobre as dimensões das pétalas e sépalas de várias flores do gênero Íris. Para acelerar futuras pesquisas, você quer um programa que identifique automaticamente a espécie de uma flor (setosa, versicolor ou virginica) a partir dessas medidas.
+Seu Objetivo:
+Construir um modelo de classificação multiclasse simples e eficiente.
+Dicas para a Construção:
+Dataset:
+Não precisa criar do zero! O Scikit-learn já vem com este dataset clássico.
+Use from sklearn.datasets import load_iris. A função load_iris() retorna um objeto onde iris.data são as features e iris.target são as classes.
+Bibliotecas Essenciais:
+load_iris do sklearn.datasets.
+train_test_split.
+Pipeline.
+StandardScaler.
+KNeighborsClassifier do sklearn.neighbors (um algoritmo clássico baseado em "proximidade").
+accuracy_score, classification_report.
+Estrutura do Projeto:
+Preparação: Carregue os dados e imediatamente os divida em conjuntos de treino e teste.
+Modelagem: O algoritmo KNN é muito sensível à escala das features. Portanto, crie um Pipeline que primeiro aplica o StandardScaler e depois o KNeighborsClassifier. Você pode experimentar com o parâmetro n_neighbors (um bom começo é 5).
+Treinamento: Treine o pipeline com .fit().
+Avaliação: Faça previsões e use o classification_report para ver a performance do modelo para cada uma das três espécies de flores. A acurácia geral é uma boa métrica aqui, pois o dataset é balanceado.
+
+
+Projeto 5: Previsão de Qualidade de Vinho (0,15 PONTO)
+Cenário de Negócio:
+Você é um enólogo em uma grande vinícola e quer usar dados para aprimorar o processo de produção. Você tem acesso a um grande dataset com as análises físico-químicas de vinhos e uma nota de qualidade (de 0 a 10) atribuída por especialistas.
+Sua tarefa é criar um modelo que preveja essa nota de qualidade.
+
+Seu Objetivo:
+Construir um modelo de regressão para prever a nota de um vinho com base em suas características.
+Dicas para a Construção:
+
+Dataset:
+Este é um dataset público famoso. Você pode carregá-lo diretamente com o Pandas.
+URL: 'http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv'
+Importante: Os dados neste CSV são separados por ponto e vírgula. Use o parâmetro sep=';' no pd.read_csv( ).
+O alvo é a coluna quality. Todas as outras são features.
+Bibliotecas Essenciais:
+pandas.
+train_test_split.
+Pipeline.
+StandardScaler.
+SVR do sklearn.svm (Support Vector Regressor, um algoritmo poderoso).
+mean_absolute_error, r2_score.
+Estrutura do Projeto:
+Preparação: Carregue o dataset, separe X e y, e divida em treino e teste.
+Modelagem: O SVR, assim como o KNN, é muito sensível à escala dos dados. É essencial usar um StandardScaler. Crie um Pipeline contendo o StandardScaler e o SVR.
+Treinamento: Treine o pipeline. Dependendo do tamanho dos dados, o SVR pode levar um pouco mais de tempo para treinar do que a Regressão Linear.
+Avaliação: Faça previsões e avalie com MAE e R² Score. Reflita: um erro médio de 0.5 na nota de um vinho é aceitável para o seu negócio?
