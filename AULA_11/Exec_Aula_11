@@ -1,0 +1,74 @@
+# ==============================================================================
+# EXERCÍCIO: CHATBOT DE FAQ (PERGUNTAS FREQUENTES)
+# ==============================================================================
+# Objetivo: Criar um chatbot que responde a perguntas com base em um
+#           dicionário de conhecimento e que dá respostas variadas
+#           quando não entende a pergunta (lógica de fallback).
+# ==============================================================================
+
+# --- Etapa 1: Estrutura Base e Base de Conhecimento ---
+import random
+
+# O dicionário 'faq' funciona como a "memória" ou "base de conhecimento" do nosso chatbot.
+# Cada 'chave' (ex: "horário") é uma palavra-chave que o bot procurará na mensagem do usuário.
+
+faq = {
+    "horário": "Atendemos de segunda a sexta, das 8h às 18h.",
+    "produtos": "Oferecemos uma vasta gama de produtos, incluindo camisetas, bonés e diversos acessórios de faculdade.",
+    "pagamento": "Aceitamos as principais bandeiras de cartão de crédito, Pix e também boleto bancário.",
+    "entrega": "Realizamos entregas para todo o território nacional! O prazo pode variar conforme sua localidade.",
+    "suporte": "Nosso time de suporte técnico está disponível 24 horas por dia através do nosso chat online."
+}
+
+# --- Etapa 2: Aprimorando a Lógica de Fallback ---
+
+# Esta lista contém várias respostas possíveis para quando o bot não entende.
+# Usar uma lista com respostas aleatórias torna a interação menos repetitiva e mais "humana".
+respostas_padrao = [
+    "Desculpe, não consegui entender sua pergunta. Poderia reformular?",
+    "Hmm... essa informação eu ainda não tenho. Tente perguntar sobre nossos produtos ou formas de pagamento.",
+    "Ainda estou em treinamento e não sei responder sobre isso. Pode tentar de outra forma?",
+    "Não encontrei uma resposta para sua dúvida. Você pode perguntar sobre nosso horário de atendimento, por exemplo."
+]
+
+# Mensagens de boas-vindas e instrução para o usuário.
+print("Bem-vindo ao Assistente Virtual da UniFECAF Store!")
+print("Como posso te ajudar hoje? (Digite 'sair' para encerrar)")
+
+# Inicia o loop infinito para manter a conversa ativa.
+while True:
+    # Captura a mensagem do usuário e a converte para minúsculas.
+    mensagem = input("Você: ").lower()
+    
+    # Condição para encerrar a conversa.
+    if mensagem == "sair":
+        print("Chatbot: Foi um prazer te atender. Até logo!")
+        break
+    
+    # Variável de controle para saber se o bot encontrou uma resposta.
+    # Começa como 'False' em cada nova mensagem.
+    respondeu = False
+    
+    # Loop 'for' para iterar sobre cada chave na nossa base de conhecimento 'faq'.
+    # A variável 'chave' assumirá o valor "horário", depois "produtos", e assim por diante.
+    for chave in faq:
+        # Verifica se a palavra-chave (ex: "horário") está contida na mensagem do usuário.
+        # Ex: Se o usuário digitar "qual o horário de vocês?", a condição será verdadeira.
+        if chave in mensagem:
+            # Se encontrou a chave, imprime a resposta correspondente do dicionário.
+            # faq[chave] acessa o valor associado àquela chave.
+            print("Chatbot:", faq[chave])
+            
+            # Atualiza a variável de controle para 'True', indicando que uma resposta foi dada.
+            respondeu = True
+            
+            # Interrompe o loop 'for' assim que encontra a primeira correspondência.
+            # Isso evita que o bot dê múltiplas respostas se a mensagem tiver várias palavras-chave.
+            break
+    
+    # Após o loop 'for', esta condição verifica se a variável 'respondeu' ainda é 'False'.
+    # Isso só acontece se nenhuma das chaves do 'faq' foi encontrada na mensagem.
+    if not respondeu:
+        # Em vez de uma única resposta padrão, escolhemos uma aleatoriamente da nossa lista.
+        # random.choice() seleciona um item de uma lista de forma aleatória.
+        print("Chatbot:", random.choice(respostas_padrao))
