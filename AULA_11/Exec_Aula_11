@@ -72,3 +72,16 @@ while True:
         # Em vez de uma única resposta padrão, escolhemos uma aleatoriamente da nossa lista.
         # random.choice() seleciona um item de uma lista de forma aleatória.
         print("Chatbot:", random.choice(respostas_padrao))
+
+
+Exercício Prático 
+
+Exercício 1: 
+
+Adicione mais perguntas e respostas ao dicionário faq (pelo menos 5 novas). 
+
+Exercício 2: 
+
+Faça o bot perguntar o nome do usuário no início da conversa e usar o nome nas respostas. 
+
+Dica: use f"Olá, {nome}!" para formatar strings dinamicamente. 
