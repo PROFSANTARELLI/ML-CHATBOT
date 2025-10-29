@@ -1,5 +1,4 @@
 Chatbot
-
 Programa que simula uma conversa com um ser humano por meio de texto ou voz.
 Seu objetivo é responder, orientar ou executar tarefas com base em entradas de linguagem natural.
 
@@ -24,7 +23,6 @@ Fluxo interno:
 
 Pergunta: Se um cliente disser “posso falar com alguém amanhã cedo?”, o que o chatbot precisa compreender para responder bem?
 
-________________________________________
 
 Arquitetura de um Chatbot
 Componentes principais
@@ -35,12 +33,12 @@ Base de conhecimento	Onde as respostas e regras estão armazenadas.
 Lógica de diálogo	Controla o fluxo da conversa.
 Integração/API	Conecta o chatbot a sistemas externos.
 
-Analogia:
-Pense no chatbot como um garçom digital:
+Analogia: Pense no chatbot como um garçom digital:
 •	O cliente (usuário) faz o pedido (mensagem).
 •	O garçom entende o que foi pedido (intenção).
 •	Consulta a cozinha (base de dados).
 •	E traz a resposta (output).
+
 Se o garçom não entender o pedido, ele pede para o cliente repetir — isso é a lógica de fallback nos chatbots.
 
 Exemplo Conceitual
@@ -52,16 +50,6 @@ Usuário → Interface (Telegram)
 
 
 
-
-
-Exercício guiado
-Tarefa: desenhar o fluxograma de um chatbot que:
-•	Cumprimenta o usuário;
-•	Pergunta o motivo do contato;
-•	Oferece 3 opções (ex.: “Horário de atendimento”, “Suporte técnico”, “Falar com humano”);
-•	Responde de acordo com a escolha.
-Entenda que a estrutura lógica é o primeiro passo antes do código.
-________________________________________
 Criando Primeiro Chatbot  - Base da lógica conversacional
 Chatbot baseado em regras simples, usando condicionais if/elif.
 
@@ -95,7 +83,8 @@ Exercício prático
 Tarefa: Adicione novos fluxos:
 •	Quando o usuário falar “suporte”, o bot deve pedir o número do protocolo.
 •	Quando o usuário falar “ajuda”, o bot deve listar as opções disponíveis.
-________________________________________
+
+
 Fluxos Condicionais mais complexos
 Podemos criar conversas em etapas.
 Por exemplo, o bot pergunta o tipo de serviço que o cliente deseja, e a resposta leva a outro conjunto de perguntas. Exemplo:
@@ -120,7 +109,7 @@ else:
     print("Opção inválida. Tente novamente.")
 
 Pense nesse chatbot como um menu de restaurante digital. Você escolhe uma opção e o bot te leva para o “prato” correspondente.
-________________________________________
+
 
 Estruturando Dados em Dicionários (Base Simples de FAQ)
 Vamos evoluir a ideia usando um dicionário de perguntas e respostas — uma forma de armazenar várias combinações sem precisar criar muitos if/else.
@@ -147,10 +136,11 @@ Explicação:
 •	O dicionário faq guarda perguntas (chaves) e respostas (valores).
 •	O loop percorre cada chave e procura na mensagem do usuário.
 •	Se encontra, responde automaticamente.
-________________________________________
+
+
 Chatbot de FAQ Interativo
 Objetivo: Construir um chatbot simples que responde perguntas frequentes e simula um pequeno atendimento virtual.
-________________________________________
+
 Etapa 1: Estrutura Base
 faq = {
     "horário": "Atendemos de segunda a sexta, das 8h às 18h.",
@@ -192,7 +182,8 @@ Substitua a última linha do if not respondeu: por:
 print("Chatbot:", random.choice(respostas_padrao))
 
 Resultado: O bot agora tem mais “personalidade” e evita respostas repetitivas.
-________________________________________
+
+
 Exercício Prático
 Exercício 1:
 Adicione mais perguntas e respostas ao dicionário faq (pelo menos 5 novas).
