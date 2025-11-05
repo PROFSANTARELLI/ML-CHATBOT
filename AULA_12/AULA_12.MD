@@ -1,4 +1,4 @@
-Inteligência com NLP
+Inteligência com NLP (Natural Language Process)
 Objetivos:
 - Entender o que é classificação de intenções (Intent Classification)
 - Aplicar NLP + Machine Learning para ensinar o chatbot a “entender” comandos
@@ -13,9 +13,7 @@ Exemplos:
 
  - “Qual o horário de funcionamento?” → intenção: saber_horario
 
-Analogia do garçom.
-
-Ele não precisa entender toda a frase do cliente, só precisa identificar o que o cliente quer — pedir, cancelar ou perguntar algo.
+Analogia do garçom: ele não precisa entender toda a frase do cliente, só precisa identificar o que o cliente quer — pedir, cancelar ou perguntar algo.
 
 2 - Fluxo Lógico
 - O usuário digita uma mensagem.
