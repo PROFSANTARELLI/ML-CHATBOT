@@ -1,0 +1,167 @@
+EXERCÍCIO 1 - Inteligência com NLP
+
+Imagine que você está criando um assistente virtual para uma loja. Ele precisa entender o que o cliente quer fazer: comprar um produto, cancelar um pedido ou apenas consultar o horário de funcionamento.
+Para isso, você vai treinar um modelo de NLP com exemplos de frases de cada intenção.
+
+Etapas do exercício:
+
+1 - Crie um arquivo Python chamado intent_classifier.py.
+
+2 - Instale as bibliotecas necessárias:
+
+pip install scikit-learn nltk
+
+
+3 - No código, importe os módulos:
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+import nltk
+nltk.download('punkt')
+
+
+4 - Crie o dataset com exemplos:
+
+frases = [
+    "quero comprar um produto",
+    "preciso fazer uma compra",
+    "como posso cancelar meu pedido",
+    "quero cancelar a compra",
+    "qual o horário de funcionamento",
+    "até que horas vocês estão abertos"
+]
+
+intenções = ["comprar", "comprar", "cancelar", "cancelar", "horário", "horário"]
+
+
+5 - Vetorize o texto e treine o modelo:
+
+vetorizador = CountVectorizer()
+X = vetorizador.fit_transform(frases)
+modelo = MultinomialNB()
+modelo.fit(X, intenções)
+
+
+6 - Faça um teste com nova frase:
+
+frase_teste = input("Digite sua mensagem: ")
+X_teste = vetorizador.transform([frase_teste])
+print("Intenção detectada:", modelo.predict(X_teste)[0])
+
+
+7 - Desafio extra:
+
+Adicione pelo menos 5 novas frases para cada intenção e veja se o modelo melhora a precisão.
+
+
+EXERCÍCIO 2 APIs e Comunicação entre Sistemas
+Criando uma API para o Chatbot com Flask
+Objetivo: Aprender o conceito de API REST e construir um servidor simples em Flask que recebe mensagens e retorna respostas do chatbot.
+
+Etapas:
+
+1 - Crie um arquivo chatbot_api.py.
+
+2 - Instale Flask:
+
+pip install flask
+
+
+3 - Estruture a API:
+
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/mensagem', methods=['POST'])
+def receber_mensagem():
+    dados = request.get_json()
+    mensagem = dados['mensagem'].lower()
+
+    if "comprar" in mensagem:
+        resposta = "Certo! O que deseja comprar?"
+    elif "cancelar" in mensagem:
+        resposta = "Tudo bem, qual pedido deseja cancelar?"
+    else:
+        resposta = "Desculpe, não entendi. Pode reformular?"
+
+    return jsonify({"resposta": resposta})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+4 - Teste com o Postman ou curl:
+
+curl -X POST http://127.0.0.1:5000/mensagem -H "Content-Type: application/json" -d "{\"mensagem\": \"Quero comprar\"}"
+
+Desafio extra:
+
+Adapte o código para registrar todas as mensagens em um arquivo log.txt com data e hora.
+
+
+
+EXERCÍCIO 3 - Integração com Plataformas Reais
+Deploy do Chatbot no Telegram
+Objetivo: Aprender a conectar o chatbot com uma plataforma real (Telegram), utilizando webhooks e comunicação via API.
+
+Etapas:
+
+1 - Crie um novo bot no Telegram:
+
+Acesse o app e converse com o @BotFather.
+Envie o comando /newbot.
+Dê um nome e receba o token do bot.
+
+2 - Instale as bibliotecas:
+
+pip install python-telegram-bot flask
+
+3 - Crie o arquivo telegram_bot.py:
+
+from flask import Flask, request
+import requests
+
+TOKEN = "SEU_TOKEN_AQUI"
+URL = f"https://api.telegram.org/bot{TOKEN}/"
+
+app = Flask(__name__)
+
+@app.route('/', methods=['POST'])
+def webhook():
+    data = request.get_json()
+    chat_id = data['message']['chat']['id']
+    texto = data['message']['text'].lower()
+
+    if "comprar" in texto:
+        resposta = "Claro! O que você quer comprar?"
+    elif "cancelar" in texto:
+        resposta = "Tudo bem, qual pedido deseja cancelar?"
+    else:
+        resposta = "Não entendi, pode repetir?"
+
+    enviar_mensagem(chat_id, resposta)
+    return "ok"
+
+def enviar_mensagem(chat_id, texto):
+    url = URL + "sendMessage"
+    payload = {"chat_id": chat_id, "text": texto}
+    requests.post(url, json=payload)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+4 - Configure o webhook:
+
+Use ngrok para criar um túnel:
+
+ngrok http 5000
+
+
+5 - Copie a URL pública e registre no Telegram:
+
+https://api.telegram.org/botSEU_TOKEN_AQUI/setWebhook?url=SUA_URL_DO_NGROK
+
+Desafio extra:
+Faça o bot reconhecer o nome do usuário e personalizar as respostas: “Olá, João! Quer comprar algo hoje?”
