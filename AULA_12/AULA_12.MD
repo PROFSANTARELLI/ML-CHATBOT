@@ -23,7 +23,7 @@ Ele não precisa entender toda a frase do cliente, só precisa identificar o que
 - O modelo classifica a intenção (classe) da frase.
 - O chatbot responde conforme a intenção reconhecida.
 
-3️ - Implementação em Python (Naive Bayes)
+3️ - Implementação em Naive Bayes
 Etapa 1: Dataset de Treino
 # Exemplo de dataset
 frases = [
@@ -75,17 +75,16 @@ Intenção reconhecida: saber_horario
 APIs e Comunicação entre Sistemas
 Objetivos:
 - Entender o conceito de API REST
-- Criar endpoints com Flask ou FastAPI
+- Criar endpoints com Flask
 - Enviar e receber dados em JSON
 - Integrar o chatbot via requisições HTTP
 
 
 1️ - O que é uma API REST
 API (Application Programming Interface) = meio de comunicação entre sistemas
-REST = estilo de arquitetura baseado em requisições HTTP (GET, POST, PUT, DELETE)
+REST = arquitetura baseado em requisições HTTP (GET, POST, PUT, DELETE)
 
-Analogia:
-Pense em uma API como um garçom que leva o pedido (requisição) do cliente até a cozinha (servidor) e depois traz a comida (resposta).
+Analogia:Pense em uma API como um garçom que leva o pedido (requisição) do cliente até a cozinha (servidor) e depois traz a comida (resposta).
 
 2️ - Criando uma API com Flask
 Instalação
@@ -115,7 +114,7 @@ if __name__ == "__main__":
 
 3️ - Testando a API
 
-Use Postman ou cURL para testar:
+Use Postman para testar:
 
 POST http://localhost:5000/chat
 Body (JSON):
@@ -190,7 +189,3 @@ Execute no terminal:
 curl -F "url=https://seuservidor.com/SEU_TOKEN_AQUI" \
 https://api.telegram.org/botSEU_TOKEN_AQUI/setWebhook
 
-
-✅ Entende intenções via NLP
-✅ Se comunica por API REST
-✅ Está implantado em uma plataforma real (Telegram)
