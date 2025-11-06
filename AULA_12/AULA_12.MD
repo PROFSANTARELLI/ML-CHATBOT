@@ -1,25 +1,25 @@
-Inteligência com NLP (Natural Language Process)
+CHATBOT - Inteligência com NLP (Natural Language Process)
 Objetivos:
-- Entender o que é classificação de intenções (Intent Classification)
+- Entender o que é classificação de intenções
 - Aplicar NLP + Machine Learning para ensinar o chatbot a “entender” comandos
 - Implementar um modelo simples com Naive Bayes usando scikit-learn
 
+
 1 - O que é uma Intenção?
-Quando um usuário fala com o chatbot, ele quer algo específico — isso é a intenção.
+Quando um usuário fala com o chatbot, ele quer algo específico —> isso é a intenção.
+
 Exemplos:
- - “Quero comprar um produto.” → intenção: comprar
+ - “Quero comprar um produto.” -> intenção: comprar
+ - “Quero cancelar meu pedido.” -> intenção: cancelar
+ - “Qual o horário de funcionamento?” -> intenção: saber_horario
 
- - “Quero cancelar meu pedido.” → intenção: cancelar
 
- - “Qual o horário de funcionamento?” → intenção: saber_horario
-
-Analogia do garçom: ele não precisa entender toda a frase do cliente, só precisa identificar o que o cliente quer — pedir, cancelar ou perguntar algo.
-
-2 - Fluxo Lógico
+2 - Fluxo Lógico de um ChatBot
 - O usuário digita uma mensagem.
-- O texto é pré-processado (limpeza, minúsculas, remoção de stopwords).
-- O modelo classifica a intenção (classe) da frase.
+- O texto é pré-processado (padrões).
+- O modelo classifica a intenção da frase.
 - O chatbot responde conforme a intenção reconhecida.
+
 
 3️ - Implementação em Naive Bayes
 Etapa 1: Dataset de Treino
